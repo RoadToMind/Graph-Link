@@ -1,0 +1,1501 @@
+[33;1m2026-06-16 19:25:44,642 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/gymnasium/spaces/box.py:231: UserWarning: [33mWARN: Box low's precision lowered by casting to float32, current low.dtype=float64[0m
+  gym.logger.warn(
+/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/gymnasium/spaces/box.py:297: UserWarning: [33mWARN: Box high's precision lowered by casting to float32, current high.dtype=float64[0m
+  gym.logger.warn(
+[33;1m2026-06-16 19:25:44,657 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:25:44,662 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+####
+args.num_iterations=2441 args.num_envs=256 args.num_eval_envs=8
+args.minibatch_size=2048 args.batch_size=32768 args.update_epochs=4
+####
+Epoch: 1, global_step=0
+Evaluating
+[33;1m2026-06-16 19:25:45,341 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:25:45,354 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:25:45,359 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:26:01,168 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:26:01,202 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:26:01,211 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=2.1606683731079102e-07
+eval_episode_len_mean=600.0
+eval_reward_mean=3.6011138515590346e-10
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_1.pt
+SPS: 306
+Epoch: 2, global_step=32768
+SPS: 603
+Epoch: 3, global_step=65536
+SPS: 892
+Epoch: 4, global_step=98304
+SPS: 1173
+Epoch: 5, global_step=131072
+SPS: 1446
+Epoch: 6, global_step=163840
+SPS: 1713
+Epoch: 7, global_step=196608
+SPS: 1973
+Epoch: 8, global_step=229376
+SPS: 2224
+Epoch: 9, global_step=262144
+SPS: 2469
+Epoch: 10, global_step=294912
+SPS: 2709
+Epoch: 11, global_step=327680
+SPS: 2945
+Epoch: 12, global_step=360448
+SPS: 3169
+Epoch: 13, global_step=393216
+SPS: 3391
+Epoch: 14, global_step=425984
+SPS: 3606
+Epoch: 15, global_step=458752
+SPS: 3820
+Epoch: 16, global_step=491520
+SPS: 4027
+Epoch: 17, global_step=524288
+SPS: 4229
+Epoch: 18, global_step=557056
+SPS: 4426
+Epoch: 19, global_step=589824
+SPS: 4619
+Epoch: 20, global_step=622592
+SPS: 4810
+Epoch: 21, global_step=655360
+SPS: 4991
+Epoch: 22, global_step=688128
+SPS: 5167
+Epoch: 23, global_step=720896
+SPS: 5339
+Epoch: 24, global_step=753664
+SPS: 5507
+Epoch: 25, global_step=786432
+SPS: 5662
+Epoch: 26, global_step=819200
+Evaluating
+[33;1m2026-06-16 19:28:09,984 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:28:10,021 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:28:10,031 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:28:20,868 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:28:20,903 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:28:20,912 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=0.0
+eval_episode_len_mean=600.0
+eval_reward_mean=0.0
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_26.pt
+SPS: 4454
+Epoch: 27, global_step=851968
+SPS: 4581
+Epoch: 28, global_step=884736
+SPS: 4703
+Epoch: 29, global_step=917504
+SPS: 4826
+Epoch: 30, global_step=950272
+SPS: 4948
+Epoch: 31, global_step=983040
+SPS: 5064
+Epoch: 32, global_step=1015808
+SPS: 5179
+Epoch: 33, global_step=1048576
+SPS: 5285
+Epoch: 34, global_step=1081344
+SPS: 5398
+Epoch: 35, global_step=1114112
+SPS: 5509
+Epoch: 36, global_step=1146880
+SPS: 5617
+Epoch: 37, global_step=1179648
+SPS: 5722
+Epoch: 38, global_step=1212416
+SPS: 5828
+Epoch: 39, global_step=1245184
+SPS: 5932
+Epoch: 40, global_step=1277952
+SPS: 6033
+Epoch: 41, global_step=1310720
+SPS: 6131
+Epoch: 42, global_step=1343488
+SPS: 6229
+Epoch: 43, global_step=1376256
+SPS: 6326
+Epoch: 44, global_step=1409024
+SPS: 6422
+Epoch: 45, global_step=1441792
+SPS: 6517
+Epoch: 46, global_step=1474560
+SPS: 6609
+Epoch: 47, global_step=1507328
+SPS: 6699
+Epoch: 48, global_step=1540096
+SPS: 6789
+Epoch: 49, global_step=1572864
+SPS: 6876
+Epoch: 50, global_step=1605632
+SPS: 6962
+Epoch: 51, global_step=1638400
+Evaluating
+[33;1m2026-06-16 19:29:41,219 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:29:41,260 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:29:41,268 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:29:54,297 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:29:54,332 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:29:54,337 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=0.0026645883917808533
+eval_episode_len_mean=600.0
+eval_reward_mean=4.440980774234049e-06
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_51.pt
+SPS: 6098
+Epoch: 52, global_step=1671168
+SPS: 6178
+Epoch: 53, global_step=1703936
+SPS: 6257
+Epoch: 54, global_step=1736704
+SPS: 6332
+Epoch: 55, global_step=1769472
+SPS: 6402
+Epoch: 56, global_step=1802240
+SPS: 6470
+Epoch: 57, global_step=1835008
+SPS: 6544
+Epoch: 58, global_step=1867776
+SPS: 6615
+Epoch: 59, global_step=1900544
+SPS: 6682
+Epoch: 60, global_step=1933312
+SPS: 6754
+Epoch: 61, global_step=1966080
+SPS: 6821
+Epoch: 62, global_step=1998848
+SPS: 6887
+Epoch: 63, global_step=2031616
+SPS: 6950
+Epoch: 64, global_step=2064384
+SPS: 7012
+Epoch: 65, global_step=2097152
+SPS: 7076
+Epoch: 66, global_step=2129920
+SPS: 7146
+Epoch: 67, global_step=2162688
+SPS: 7215
+Epoch: 68, global_step=2195456
+SPS: 7278
+Epoch: 69, global_step=2228224
+SPS: 7343
+Epoch: 70, global_step=2260992
+SPS: 7406
+Epoch: 71, global_step=2293760
+SPS: 7469
+Epoch: 72, global_step=2326528
+SPS: 7534
+Epoch: 73, global_step=2359296
+SPS: 7596
+Epoch: 74, global_step=2392064
+SPS: 7657
+Epoch: 75, global_step=2424832
+SPS: 7715
+Epoch: 76, global_step=2457600
+Evaluating
+[33;1m2026-06-16 19:31:03,303 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:31:03,321 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:31:03,326 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:31:11,358 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:31:11,375 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:31:11,379 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=0.0
+eval_episode_len_mean=600.0
+eval_reward_mean=0.0
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_76.pt
+SPS: 7044
+Epoch: 77, global_step=2490368
+SPS: 7105
+Epoch: 78, global_step=2523136
+SPS: 7166
+Epoch: 79, global_step=2555904
+SPS: 7225
+Epoch: 80, global_step=2588672
+SPS: 7283
+Epoch: 81, global_step=2621440
+SPS: 7343
+Epoch: 82, global_step=2654208
+SPS: 7398
+Epoch: 83, global_step=2686976
+SPS: 7454
+Epoch: 84, global_step=2719744
+SPS: 7510
+Epoch: 85, global_step=2752512
+SPS: 7569
+Epoch: 86, global_step=2785280
+SPS: 7622
+Epoch: 87, global_step=2818048
+SPS: 7676
+Epoch: 88, global_step=2850816
+SPS: 7727
+Epoch: 89, global_step=2883584
+SPS: 7779
+Epoch: 90, global_step=2916352
+SPS: 7829
+Epoch: 91, global_step=2949120
+SPS: 7880
+Epoch: 92, global_step=2981888
+SPS: 7927
+Epoch: 93, global_step=3014656
+SPS: 7976
+Epoch: 94, global_step=3047424
+SPS: 8022
+Epoch: 95, global_step=3080192
+SPS: 8076
+Epoch: 96, global_step=3112960
+SPS: 8129
+Epoch: 97, global_step=3145728
+SPS: 8181
+Epoch: 98, global_step=3178496
+SPS: 8233
+Epoch: 99, global_step=3211264
+SPS: 8285
+Epoch: 100, global_step=3244032
+SPS: 8336
+Epoch: 101, global_step=3276800
+Evaluating
+[33;1m2026-06-16 19:32:17,877 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:32:17,899 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:32:17,904 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:32:25,329 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:32:25,349 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:32:25,353 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=0.0
+eval_episode_len_mean=600.0
+eval_reward_mean=0.0
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_101.pt
+SPS: 7715
+Epoch: 102, global_step=3309568
+SPS: 7763
+Epoch: 103, global_step=3342336
+SPS: 7811
+Epoch: 104, global_step=3375104
+SPS: 7859
+Epoch: 105, global_step=3407872
+SPS: 7907
+Epoch: 106, global_step=3440640
+SPS: 7954
+Epoch: 107, global_step=3473408
+SPS: 8001
+Epoch: 108, global_step=3506176
+SPS: 8047
+Epoch: 109, global_step=3538944
+SPS: 8094
+Epoch: 110, global_step=3571712
+SPS: 8140
+Epoch: 111, global_step=3604480
+SPS: 8186
+Epoch: 112, global_step=3637248
+SPS: 8231
+Epoch: 113, global_step=3670016
+SPS: 8276
+Epoch: 114, global_step=3702784
+SPS: 8322
+Epoch: 115, global_step=3735552
+SPS: 8365
+Epoch: 116, global_step=3768320
+SPS: 8409
+Epoch: 117, global_step=3801088
+SPS: 8452
+Epoch: 118, global_step=3833856
+SPS: 8497
+Epoch: 119, global_step=3866624
+SPS: 8541
+Epoch: 120, global_step=3899392
+SPS: 8583
+Epoch: 121, global_step=3932160
+SPS: 8626
+Epoch: 122, global_step=3964928
+SPS: 8668
+Epoch: 123, global_step=3997696
+SPS: 8711
+Epoch: 124, global_step=4030464
+SPS: 8753
+Epoch: 125, global_step=4063232
+SPS: 8795
+Epoch: 126, global_step=4096000
+Evaluating
+[33;1m2026-06-16 19:33:30,471 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:33:30,486 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:33:30,490 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:33:38,050 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:33:38,065 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:33:38,069 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=0.0
+eval_episode_len_mean=600.0
+eval_reward_mean=0.0
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_126.pt
+SPS: 8296
+Epoch: 127, global_step=4128768
+SPS: 8336
+Epoch: 128, global_step=4161536
+SPS: 8377
+Epoch: 129, global_step=4194304
+SPS: 8417
+Epoch: 130, global_step=4227072
+SPS: 8456
+Epoch: 131, global_step=4259840
+SPS: 8495
+Epoch: 132, global_step=4292608
+SPS: 8535
+Epoch: 133, global_step=4325376
+SPS: 8574
+Epoch: 134, global_step=4358144
+SPS: 8612
+Epoch: 135, global_step=4390912
+SPS: 8650
+Epoch: 136, global_step=4423680
+SPS: 8687
+Epoch: 137, global_step=4456448
+SPS: 8726
+Epoch: 138, global_step=4489216
+SPS: 8764
+Epoch: 139, global_step=4521984
+SPS: 8801
+Epoch: 140, global_step=4554752
+SPS: 8838
+Epoch: 141, global_step=4587520
+SPS: 8874
+Epoch: 142, global_step=4620288
+SPS: 8912
+Epoch: 143, global_step=4653056
+SPS: 8949
+Epoch: 144, global_step=4685824
+SPS: 8985
+Epoch: 145, global_step=4718592
+SPS: 9019
+Epoch: 146, global_step=4751360
+SPS: 9055
+Epoch: 147, global_step=4784128
+SPS: 9091
+Epoch: 148, global_step=4816896
+SPS: 9127
+Epoch: 149, global_step=4849664
+SPS: 9162
+Epoch: 150, global_step=4882432
+SPS: 9197
+Epoch: 151, global_step=4915200
+Evaluating
+[33;1m2026-06-16 19:34:39,187 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:34:39,203 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:34:39,208 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:34:46,853 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:34:46,867 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:34:46,871 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=0.0
+eval_episode_len_mean=600.0
+eval_reward_mean=0.0
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_151.pt
+SPS: 8722
+Epoch: 152, global_step=4947968
+SPS: 8757
+Epoch: 153, global_step=4980736
+SPS: 8791
+Epoch: 154, global_step=5013504
+SPS: 8824
+Epoch: 155, global_step=5046272
+SPS: 8858
+Epoch: 156, global_step=5079040
+SPS: 8892
+Epoch: 157, global_step=5111808
+SPS: 8926
+Epoch: 158, global_step=5144576
+SPS: 8959
+Epoch: 159, global_step=5177344
+SPS: 8991
+Epoch: 160, global_step=5210112
+SPS: 9024
+Epoch: 161, global_step=5242880
+SPS: 9057
+Epoch: 162, global_step=5275648
+SPS: 9090
+Epoch: 163, global_step=5308416
+SPS: 9122
+Epoch: 164, global_step=5341184
+SPS: 9155
+Epoch: 165, global_step=5373952
+SPS: 9187
+Epoch: 166, global_step=5406720
+SPS: 9220
+Epoch: 167, global_step=5439488
+SPS: 9251
+Epoch: 168, global_step=5472256
+SPS: 9281
+Epoch: 169, global_step=5505024
+SPS: 9312
+Epoch: 170, global_step=5537792
+SPS: 9345
+Epoch: 171, global_step=5570560
+SPS: 9375
+Epoch: 172, global_step=5603328
+SPS: 9406
+Epoch: 173, global_step=5636096
+SPS: 9436
+Epoch: 174, global_step=5668864
+SPS: 9467
+Epoch: 175, global_step=5701632
+SPS: 9498
+Epoch: 176, global_step=5734400
+Evaluating
+[33;1m2026-06-16 19:35:48,497 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:35:48,512 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:35:48,516 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:35:55,953 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:35:55,968 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:35:55,972 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=0.0
+eval_episode_len_mean=600.0
+eval_reward_mean=0.0
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_176.pt
+SPS: 9145
+Epoch: 177, global_step=5767168
+SPS: 9175
+Epoch: 178, global_step=5799936
+SPS: 9204
+Epoch: 179, global_step=5832704
+SPS: 9234
+Epoch: 180, global_step=5865472
+SPS: 9264
+Epoch: 181, global_step=5898240
+SPS: 9293
+Epoch: 182, global_step=5931008
+SPS: 9323
+Epoch: 183, global_step=5963776
+SPS: 9351
+Epoch: 184, global_step=5996544
+SPS: 9381
+Epoch: 185, global_step=6029312
+SPS: 9410
+Epoch: 186, global_step=6062080
+SPS: 9439
+Epoch: 187, global_step=6094848
+SPS: 9467
+Epoch: 188, global_step=6127616
+SPS: 9496
+Epoch: 189, global_step=6160384
+SPS: 9525
+Epoch: 190, global_step=6193152
+SPS: 9553
+Epoch: 191, global_step=6225920
+SPS: 9580
+Epoch: 192, global_step=6258688
+SPS: 9607
+Epoch: 193, global_step=6291456
+SPS: 9636
+Epoch: 194, global_step=6324224
+SPS: 9664
+Epoch: 195, global_step=6356992
+SPS: 9692
+Epoch: 196, global_step=6389760
+SPS: 9718
+Epoch: 197, global_step=6422528
+SPS: 9745
+Epoch: 198, global_step=6455296
+SPS: 9773
+Epoch: 199, global_step=6488064
+SPS: 9801
+Epoch: 200, global_step=6520832
+SPS: 9828
+Epoch: 201, global_step=6553600
+Evaluating
+[33;1m2026-06-16 19:36:51,553 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:36:51,566 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:36:51,569 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:36:58,765 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:36:58,779 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:36:58,783 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=0.19808992743492126
+eval_episode_len_mean=600.0
+eval_reward_mean=0.00033014986547641456
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_201.pt
+SPS: 9468
+Epoch: 202, global_step=6586368
+SPS: 9494
+Epoch: 203, global_step=6619136
+SPS: 9521
+Epoch: 204, global_step=6651904
+SPS: 9548
+Epoch: 205, global_step=6684672
+SPS: 9573
+Epoch: 206, global_step=6717440
+SPS: 9598
+Epoch: 207, global_step=6750208
+SPS: 9624
+Epoch: 208, global_step=6782976
+SPS: 9650
+Epoch: 209, global_step=6815744
+SPS: 9676
+Epoch: 210, global_step=6848512
+SPS: 9701
+Epoch: 211, global_step=6881280
+SPS: 9726
+Epoch: 212, global_step=6914048
+SPS: 9752
+Epoch: 213, global_step=6946816
+SPS: 9778
+Epoch: 214, global_step=6979584
+SPS: 9803
+Epoch: 215, global_step=7012352
+SPS: 9827
+Epoch: 216, global_step=7045120
+SPS: 9852
+Epoch: 217, global_step=7077888
+SPS: 9877
+Epoch: 218, global_step=7110656
+SPS: 9902
+Epoch: 219, global_step=7143424
+SPS: 9927
+Epoch: 220, global_step=7176192
+SPS: 9951
+Epoch: 221, global_step=7208960
+SPS: 9976
+Epoch: 222, global_step=7241728
+SPS: 10001
+Epoch: 223, global_step=7274496
+SPS: 10026
+Epoch: 224, global_step=7307264
+SPS: 10050
+Epoch: 225, global_step=7340032
+SPS: 10073
+Epoch: 226, global_step=7372800
+Evaluating
+[33;1m2026-06-16 19:37:56,673 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:37:56,688 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:37:56,691 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:38:04,257 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:38:04,271 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:38:04,274 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=0.0
+eval_episode_len_mean=600.0
+eval_reward_mean=0.0
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_226.pt
+SPS: 9766
+Epoch: 227, global_step=7405568
+SPS: 9790
+Epoch: 228, global_step=7438336
+SPS: 9813
+Epoch: 229, global_step=7471104
+SPS: 9836
+Epoch: 230, global_step=7503872
+SPS: 9860
+Epoch: 231, global_step=7536640
+SPS: 9884
+Epoch: 232, global_step=7569408
+SPS: 9907
+Epoch: 233, global_step=7602176
+SPS: 9930
+Epoch: 234, global_step=7634944
+SPS: 9953
+Epoch: 235, global_step=7667712
+SPS: 9976
+Epoch: 236, global_step=7700480
+SPS: 9999
+Epoch: 237, global_step=7733248
+SPS: 10022
+Epoch: 238, global_step=7766016
+SPS: 10045
+Epoch: 239, global_step=7798784
+SPS: 10066
+Epoch: 240, global_step=7831552
+SPS: 10090
+Epoch: 241, global_step=7864320
+SPS: 10112
+Epoch: 242, global_step=7897088
+SPS: 10135
+Epoch: 243, global_step=7929856
+SPS: 10157
+Epoch: 244, global_step=7962624
+SPS: 10178
+Epoch: 245, global_step=7995392
+SPS: 10201
+Epoch: 246, global_step=8028160
+SPS: 10223
+Epoch: 247, global_step=8060928
+SPS: 10245
+Epoch: 248, global_step=8093696
+SPS: 10266
+Epoch: 249, global_step=8126464
+SPS: 10288
+Epoch: 250, global_step=8159232
+SPS: 10310
+Epoch: 251, global_step=8192000
+Evaluating
+[33;1m2026-06-16 19:38:59,289 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:38:59,304 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:38:59,308 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:39:06,814 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:39:06,828 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:39:06,832 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=0.0
+eval_episode_len_mean=600.0
+eval_reward_mean=0.0
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_251.pt
+SPS: 9903
+Epoch: 252, global_step=8224768
+SPS: 9924
+Epoch: 253, global_step=8257536
+SPS: 9944
+Epoch: 254, global_step=8290304
+SPS: 9966
+Epoch: 255, global_step=8323072
+SPS: 9987
+Epoch: 256, global_step=8355840
+SPS: 10008
+Epoch: 257, global_step=8388608
+SPS: 10029
+Epoch: 258, global_step=8421376
+SPS: 10049
+Epoch: 259, global_step=8454144
+SPS: 10071
+Epoch: 260, global_step=8486912
+SPS: 10092
+Epoch: 261, global_step=8519680
+SPS: 10113
+Epoch: 262, global_step=8552448
+SPS: 10133
+Epoch: 263, global_step=8585216
+SPS: 10154
+Epoch: 264, global_step=8617984
+SPS: 10175
+Epoch: 265, global_step=8650752
+SPS: 10196
+Epoch: 266, global_step=8683520
+SPS: 10215
+Epoch: 267, global_step=8716288
+SPS: 10235
+Epoch: 268, global_step=8749056
+SPS: 10255
+Epoch: 269, global_step=8781824
+SPS: 10276
+Epoch: 270, global_step=8814592
+SPS: 10296
+Epoch: 271, global_step=8847360
+SPS: 10316
+Epoch: 272, global_step=8880128
+SPS: 10335
+Epoch: 273, global_step=8912896
+SPS: 10356
+Epoch: 274, global_step=8945664
+SPS: 10376
+Epoch: 275, global_step=8978432
+SPS: 10396
+Epoch: 276, global_step=9011200
+Evaluating
+[33;1m2026-06-16 19:40:11,544 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:40:11,559 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:40:11,563 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:40:19,132 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:40:19,145 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:40:19,149 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=0.008805759251117706
+eval_episode_len_mean=600.0
+eval_reward_mean=1.4676264981972054e-05
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_276.pt
+SPS: 9979
+Epoch: 277, global_step=9043968
+SPS: 9999
+Epoch: 278, global_step=9076736
+SPS: 10019
+Epoch: 279, global_step=9109504
+SPS: 10038
+Epoch: 280, global_step=9142272
+SPS: 10058
+Epoch: 281, global_step=9175040
+SPS: 10077
+Epoch: 282, global_step=9207808
+SPS: 10097
+Epoch: 283, global_step=9240576
+SPS: 10116
+Epoch: 284, global_step=9273344
+SPS: 10135
+Epoch: 285, global_step=9306112
+SPS: 10153
+Epoch: 286, global_step=9338880
+SPS: 10172
+Epoch: 287, global_step=9371648
+SPS: 10191
+Epoch: 288, global_step=9404416
+SPS: 10210
+Epoch: 289, global_step=9437184
+SPS: 10229
+Epoch: 290, global_step=9469952
+SPS: 10247
+Epoch: 291, global_step=9502720
+SPS: 10265
+Epoch: 292, global_step=9535488
+SPS: 10284
+Epoch: 293, global_step=9568256
+SPS: 10303
+Epoch: 294, global_step=9601024
+SPS: 10321
+Epoch: 295, global_step=9633792
+SPS: 10339
+Epoch: 296, global_step=9666560
+SPS: 10358
+Epoch: 297, global_step=9699328
+SPS: 10376
+Epoch: 298, global_step=9732096
+SPS: 10395
+Epoch: 299, global_step=9764864
+SPS: 10413
+Epoch: 300, global_step=9797632
+SPS: 10431
+Epoch: 301, global_step=9830400
+Evaluating
+[33;1m2026-06-16 19:41:27,160 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:41:27,174 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:41:27,178 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:41:34,439 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:41:34,452 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:41:34,456 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=0.07246847450733185
+eval_episode_len_mean=600.0
+eval_reward_mean=0.00012078078725608066
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_301.pt
+SPS: 9950
+Epoch: 302, global_step=9863168
+SPS: 9968
+Epoch: 303, global_step=9895936
+SPS: 9983
+Epoch: 304, global_step=9928704
+SPS: 10000
+Epoch: 305, global_step=9961472
+SPS: 10017
+Epoch: 306, global_step=9994240
+SPS: 10035
+Epoch: 307, global_step=10027008
+SPS: 10053
+Epoch: 308, global_step=10059776
+SPS: 10069
+Epoch: 309, global_step=10092544
+SPS: 10085
+Epoch: 310, global_step=10125312
+SPS: 10103
+Epoch: 311, global_step=10158080
+SPS: 10121
+Epoch: 312, global_step=10190848
+SPS: 10139
+Epoch: 313, global_step=10223616
+SPS: 10156
+Epoch: 314, global_step=10256384
+SPS: 10173
+Epoch: 315, global_step=10289152
+SPS: 10191
+Epoch: 316, global_step=10321920
+SPS: 10203
+Epoch: 317, global_step=10354688
+SPS: 10214
+Epoch: 318, global_step=10387456
+SPS: 10227
+Epoch: 319, global_step=10420224
+SPS: 10243
+Epoch: 320, global_step=10452992
+SPS: 10259
+Epoch: 321, global_step=10485760
+SPS: 10276
+Epoch: 322, global_step=10518528
+SPS: 10291
+Epoch: 323, global_step=10551296
+SPS: 10307
+Epoch: 324, global_step=10584064
+SPS: 10324
+Epoch: 325, global_step=10616832
+SPS: 10341
+Epoch: 326, global_step=10649600
+Evaluating
+[33;1m2026-06-16 19:42:54,545 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:42:54,559 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:42:54,563 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:43:02,740 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:43:02,753 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:43:02,757 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=0.0
+eval_episode_len_mean=600.0
+eval_reward_mean=0.0
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_326.pt
+SPS: 9939
+Epoch: 327, global_step=10682368
+SPS: 9951
+Epoch: 328, global_step=10715136
+SPS: 9967
+Epoch: 329, global_step=10747904
+SPS: 9984
+Epoch: 330, global_step=10780672
+SPS: 10000
+Epoch: 331, global_step=10813440
+SPS: 10016
+Epoch: 332, global_step=10846208
+SPS: 10031
+Epoch: 333, global_step=10878976
+SPS: 10043
+Epoch: 334, global_step=10911744
+SPS: 10059
+Epoch: 335, global_step=10944512
+SPS: 10075
+Epoch: 336, global_step=10977280
+SPS: 10091
+Epoch: 337, global_step=11010048
+SPS: 10107
+Epoch: 338, global_step=11042816
+SPS: 10121
+Epoch: 339, global_step=11075584
+SPS: 10138
+Epoch: 340, global_step=11108352
+SPS: 10153
+Epoch: 341, global_step=11141120
+SPS: 10168
+Epoch: 342, global_step=11173888
+SPS: 10183
+Epoch: 343, global_step=11206656
+SPS: 10198
+Epoch: 344, global_step=11239424
+SPS: 10213
+Epoch: 345, global_step=11272192
+SPS: 10224
+Epoch: 346, global_step=11304960
+SPS: 10238
+Epoch: 347, global_step=11337728
+SPS: 10253
+Epoch: 348, global_step=11370496
+SPS: 10269
+Epoch: 349, global_step=11403264
+SPS: 10285
+Epoch: 350, global_step=11436032
+SPS: 10300
+Epoch: 351, global_step=11468800
+Evaluating
+[33;1m2026-06-16 19:44:18,184 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:44:18,198 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:44:18,202 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:44:25,931 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:44:25,945 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:44:25,949 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=0.22686266899108887
+eval_episode_len_mean=600.0
+eval_reward_mean=0.0003781044506467879
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_351.pt
+SPS: 9953
+Epoch: 352, global_step=11501568
+SPS: 9968
+Epoch: 353, global_step=11534336
+SPS: 9984
+Epoch: 354, global_step=11567104
+SPS: 10000
+Epoch: 355, global_step=11599872
+SPS: 10015
+Epoch: 356, global_step=11632640
+SPS: 10030
+Epoch: 357, global_step=11665408
+SPS: 10045
+Epoch: 358, global_step=11698176
+SPS: 10059
+Epoch: 359, global_step=11730944
+SPS: 10072
+Epoch: 360, global_step=11763712
+SPS: 10087
+Epoch: 361, global_step=11796480
+SPS: 10102
+Epoch: 362, global_step=11829248
+SPS: 10118
+Epoch: 363, global_step=11862016
+SPS: 10133
+Epoch: 364, global_step=11894784
+SPS: 10145
+Epoch: 365, global_step=11927552
+SPS: 10157
+Epoch: 366, global_step=11960320
+SPS: 10172
+Epoch: 367, global_step=11993088
+SPS: 10187
+Epoch: 368, global_step=12025856
+SPS: 10202
+Epoch: 369, global_step=12058624
+SPS: 10217
+Epoch: 370, global_step=12091392
+SPS: 10230
+Epoch: 371, global_step=12124160
+SPS: 10245
+Epoch: 372, global_step=12156928
+SPS: 10260
+Epoch: 373, global_step=12189696
+SPS: 10275
+Epoch: 374, global_step=12222464
+SPS: 10289
+Epoch: 375, global_step=12255232
+SPS: 10303
+Epoch: 376, global_step=12288000
+Evaluating
+[33;1m2026-06-16 19:45:37,379 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:45:37,393 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:45:37,398 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:45:44,980 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:45:44,993 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:45:44,997 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=0.018450245261192322
+eval_episode_len_mean=600.0
+eval_reward_mean=3.075040876865387e-05
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_376.pt
+SPS: 9972
+Epoch: 377, global_step=12320768
+SPS: 9984
+Epoch: 378, global_step=12353536
+SPS: 9998
+Epoch: 379, global_step=12386304
+SPS: 10011
+Epoch: 380, global_step=12419072
+SPS: 10025
+Epoch: 381, global_step=12451840
+SPS: 10040
+Epoch: 382, global_step=12484608
+SPS: 10054
+Epoch: 383, global_step=12517376
+SPS: 10068
+Epoch: 384, global_step=12550144
+SPS: 10082
+Epoch: 385, global_step=12582912
+SPS: 10096
+Epoch: 386, global_step=12615680
+SPS: 10110
+Epoch: 387, global_step=12648448
+SPS: 10124
+Epoch: 388, global_step=12681216
+SPS: 10137
+Epoch: 389, global_step=12713984
+SPS: 10149
+Epoch: 390, global_step=12746752
+SPS: 10162
+Epoch: 391, global_step=12779520
+SPS: 10175
+Epoch: 392, global_step=12812288
+SPS: 10189
+Epoch: 393, global_step=12845056
+SPS: 10203
+Epoch: 394, global_step=12877824
+SPS: 10217
+Epoch: 395, global_step=12910592
+SPS: 10230
+Epoch: 396, global_step=12943360
+SPS: 10241
+Epoch: 397, global_step=12976128
+SPS: 10254
+Epoch: 398, global_step=13008896
+SPS: 10267
+Epoch: 399, global_step=13041664
+SPS: 10281
+Epoch: 400, global_step=13074432
+SPS: 10294
+Epoch: 401, global_step=13107200
+Evaluating
+[33;1m2026-06-16 19:46:57,956 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:46:57,970 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:46:57,974 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:47:05,521 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:47:05,535 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:47:05,539 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=0.049618564546108246
+eval_episode_len_mean=600.0
+eval_reward_mean=8.269761019619182e-05
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_401.pt
+SPS: 9905
+Epoch: 402, global_step=13139968
+SPS: 9916
+Epoch: 403, global_step=13172736
+SPS: 9929
+Epoch: 404, global_step=13205504
+SPS: 9943
+Epoch: 405, global_step=13238272
+SPS: 9957
+Epoch: 406, global_step=13271040
+SPS: 9970
+Epoch: 407, global_step=13303808
+SPS: 9982
+Epoch: 408, global_step=13336576
+SPS: 9995
+Epoch: 409, global_step=13369344
+SPS: 10009
+Epoch: 410, global_step=13402112
+SPS: 10022
+Epoch: 411, global_step=13434880
+SPS: 10035
+Epoch: 412, global_step=13467648
+SPS: 10048
+Epoch: 413, global_step=13500416
+SPS: 10061
+Epoch: 414, global_step=13533184
+SPS: 10072
+Epoch: 415, global_step=13565952
+SPS: 10084
+Epoch: 416, global_step=13598720
+SPS: 10096
+Epoch: 417, global_step=13631488
+SPS: 10109
+Epoch: 418, global_step=13664256
+SPS: 10123
+Epoch: 419, global_step=13697024
+SPS: 10136
+Epoch: 420, global_step=13729792
+SPS: 10146
+Epoch: 421, global_step=13762560
+SPS: 10157
+Epoch: 422, global_step=13795328
+SPS: 10170
+Epoch: 423, global_step=13828096
+SPS: 10183
+Epoch: 424, global_step=13860864
+SPS: 10196
+Epoch: 425, global_step=13893632
+SPS: 10208
+Epoch: 426, global_step=13926400
+Evaluating
+[33;1m2026-06-16 19:48:28,929 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:48:28,943 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:48:28,946 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:48:36,394 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:48:36,407 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:48:36,410 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=0.04967939108610153
+eval_episode_len_mean=600.0
+eval_reward_mean=8.279897883767262e-05
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_426.pt
+SPS: 9830
+Epoch: 427, global_step=13959168
+SPS: 9842
+Epoch: 428, global_step=13991936
+SPS: 9855
+Epoch: 429, global_step=14024704
+SPS: 9868
+Epoch: 430, global_step=14057472
+SPS: 9880
+Epoch: 431, global_step=14090240
+SPS: 9892
+Epoch: 432, global_step=14123008
+SPS: 9904
+Epoch: 433, global_step=14155776
+SPS: 9917
+Epoch: 434, global_step=14188544
+SPS: 9929
+Epoch: 435, global_step=14221312
+SPS: 9942
+Epoch: 436, global_step=14254080
+SPS: 9954
+Epoch: 437, global_step=14286848
+SPS: 9965
+Epoch: 438, global_step=14319616
+SPS: 9975
+Epoch: 439, global_step=14352384
+SPS: 9987
+Epoch: 440, global_step=14385152
+SPS: 9999
+Epoch: 441, global_step=14417920
+SPS: 10012
+Epoch: 442, global_step=14450688
+SPS: 10024
+Epoch: 443, global_step=14483456
+SPS: 10035
+Epoch: 444, global_step=14516224
+SPS: 10045
+Epoch: 445, global_step=14548992
+SPS: 10056
+Epoch: 446, global_step=14581760
+SPS: 10069
+Epoch: 447, global_step=14614528
+SPS: 10081
+Epoch: 448, global_step=14647296
+SPS: 10093
+Epoch: 449, global_step=14680064
+SPS: 10103
+Epoch: 450, global_step=14712832
+SPS: 10115
+Epoch: 451, global_step=14745600
+Evaluating
+[33;1m2026-06-16 19:50:02,467 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:50:02,481 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:50:02,484 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:50:10,135 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:50:10,151 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:50:10,156 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=0.13389965891838074
+eval_episode_len_mean=600.0
+eval_reward_mean=0.0002231661055702716
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_451.pt
+SPS: 9875
+Epoch: 452, global_step=14778368
+SPS: 9886
+Epoch: 453, global_step=14811136
+SPS: 9897
+Epoch: 454, global_step=14843904
+SPS: 9906
+Epoch: 455, global_step=14876672
+SPS: 9918
+Epoch: 456, global_step=14909440
+SPS: 9929
+Epoch: 457, global_step=14942208
+SPS: 9940
+Epoch: 458, global_step=14974976
+SPS: 9951
+Epoch: 459, global_step=15007744
+SPS: 9962
+Epoch: 460, global_step=15040512
+SPS: 9973
+Epoch: 461, global_step=15073280
+SPS: 9984
+Epoch: 462, global_step=15106048
+SPS: 9995
+Epoch: 463, global_step=15138816
+SPS: 10006
+Epoch: 464, global_step=15171584
+SPS: 10017
+Epoch: 465, global_step=15204352
+SPS: 10028
+Epoch: 466, global_step=15237120
+SPS: 10038
+Epoch: 467, global_step=15269888
+SPS: 10049
+Epoch: 468, global_step=15302656
+SPS: 10060
+Epoch: 469, global_step=15335424
+SPS: 10070
+Epoch: 470, global_step=15368192
+SPS: 10081
+Epoch: 471, global_step=15400960
+SPS: 10092
+Epoch: 472, global_step=15433728
+SPS: 10103
+Epoch: 473, global_step=15466496
+SPS: 10113
+Epoch: 474, global_step=15499264
+SPS: 10124
+Epoch: 475, global_step=15532032
+SPS: 10135
+Epoch: 476, global_step=15564800
+Evaluating
+[33;1m2026-06-16 19:51:20,433 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:51:20,447 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:51:20,451 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:51:28,761 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:51:28,777 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:51:28,781 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=3.507913589477539
+eval_episode_len_mean=600.0
+eval_reward_mean=0.005846522282809019
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_476.pt
+SPS: 9908
+Epoch: 477, global_step=15597568
+SPS: 9917
+Epoch: 478, global_step=15630336
+SPS: 9925
+Epoch: 479, global_step=15663104
+SPS: 9934
+Epoch: 480, global_step=15695872
+SPS: 9942
+Epoch: 481, global_step=15728640
+SPS: 9950
+Epoch: 482, global_step=15761408
+SPS: 9959
+Epoch: 483, global_step=15794176
+SPS: 9969
+Epoch: 484, global_step=15826944
+SPS: 9980
+Epoch: 485, global_step=15859712
+SPS: 9990
+Epoch: 486, global_step=15892480
+SPS: 10000
+Epoch: 487, global_step=15925248
+SPS: 10010
+Epoch: 488, global_step=15958016
+SPS: 10021
+Epoch: 489, global_step=15990784
+SPS: 10032
+Epoch: 490, global_step=16023552
+SPS: 10042
+Epoch: 491, global_step=16056320
+SPS: 10052
+Epoch: 492, global_step=16089088
+SPS: 10063
+Epoch: 493, global_step=16121856
+SPS: 10073
+Epoch: 494, global_step=16154624
+SPS: 10084
+Epoch: 495, global_step=16187392
+SPS: 10094
+Epoch: 496, global_step=16220160
+SPS: 10105
+Epoch: 497, global_step=16252928
+SPS: 10115
+Epoch: 498, global_step=16285696
+SPS: 10125
+Epoch: 499, global_step=16318464
+SPS: 10136
+Epoch: 500, global_step=16351232
+SPS: 10146
+Epoch: 501, global_step=16384000
+Evaluating
+[33;1m2026-06-16 19:52:39,605 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:52:39,620 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:52:39,624 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:52:47,439 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:52:47,454 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:52:47,458 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=18.678611755371094
+eval_episode_len_mean=600.0
+eval_reward_mean=0.031131017953157425
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_501.pt
+SPS: 9977
+Epoch: 502, global_step=16416768
+SPS: 9987
+Epoch: 503, global_step=16449536
+SPS: 9997
+Epoch: 504, global_step=16482304
+SPS: 10006
+Epoch: 505, global_step=16515072
+SPS: 10016
+Epoch: 506, global_step=16547840
+SPS: 10025
+Epoch: 507, global_step=16580608
+SPS: 10035
+Epoch: 508, global_step=16613376
+SPS: 10045
+Epoch: 509, global_step=16646144
+SPS: 10054
+Epoch: 510, global_step=16678912
+SPS: 10064
+Epoch: 511, global_step=16711680
+SPS: 10074
+Epoch: 512, global_step=16744448
+SPS: 10084
+Epoch: 513, global_step=16777216
+SPS: 10093
+Epoch: 514, global_step=16809984
+SPS: 10103
+Epoch: 515, global_step=16842752
+SPS: 10113
+Epoch: 516, global_step=16875520
+SPS: 10123
+Epoch: 517, global_step=16908288
+SPS: 10132
+Epoch: 518, global_step=16941056
+SPS: 10142
+Epoch: 519, global_step=16973824
+SPS: 10151
+Epoch: 520, global_step=17006592
+SPS: 10160
+Epoch: 521, global_step=17039360
+SPS: 10169
+Epoch: 522, global_step=17072128
+SPS: 10179
+Epoch: 523, global_step=17104896
+SPS: 10187
+Epoch: 524, global_step=17137664
+SPS: 10196
+Epoch: 525, global_step=17170432
+SPS: 10206
+Epoch: 526, global_step=17203200
+Evaluating
+[33;1m2026-06-16 19:53:50,384 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:53:50,398 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:53:50,402 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:53:58,455 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:53:58,469 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:53:58,473 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=49.30389404296875
+eval_episode_len_mean=600.0
+eval_reward_mean=0.08217315375804901
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_526.pt
+SPS: 10026
+Epoch: 527, global_step=17235968
+SPS: 10035
+Epoch: 528, global_step=17268736
+SPS: 10045
+Epoch: 529, global_step=17301504
+SPS: 10055
+Epoch: 530, global_step=17334272
+SPS: 10064
+Epoch: 531, global_step=17367040
+SPS: 10074
+Epoch: 532, global_step=17399808
+SPS: 10083
+Epoch: 533, global_step=17432576
+SPS: 10092
+Epoch: 534, global_step=17465344
+SPS: 10102
+Epoch: 535, global_step=17498112
+SPS: 10112
+Epoch: 536, global_step=17530880
+SPS: 10121
+Epoch: 537, global_step=17563648
+SPS: 10130
+Epoch: 538, global_step=17596416
+SPS: 10140
+Epoch: 539, global_step=17629184
+SPS: 10149
+Epoch: 540, global_step=17661952
+SPS: 10158
+Epoch: 541, global_step=17694720
+SPS: 10168
+Epoch: 542, global_step=17727488
+SPS: 10177
+Epoch: 543, global_step=17760256
+SPS: 10186
+Epoch: 544, global_step=17793024
+SPS: 10196
+Epoch: 545, global_step=17825792
+SPS: 10205
+Epoch: 546, global_step=17858560
+SPS: 10214
+Epoch: 547, global_step=17891328
+SPS: 10223
+Epoch: 548, global_step=17924096
+SPS: 10232
+Epoch: 549, global_step=17956864
+SPS: 10241
+Epoch: 550, global_step=17989632
+SPS: 10250
+Epoch: 551, global_step=18022400
+Evaluating
+[33;1m2026-06-16 19:55:03,000 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:55:03,014 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:55:03,019 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:55:10,747 - mani_skill  - WARNING - No initial pose set for articulation builder of hopper, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
+[33;1m2026-06-16 19:55:10,761 - mani_skill  - WARNING - No initial pose set for actor builder of None-actor-0, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+[33;1m2026-06-16 19:55:10,765 - mani_skill  - WARNING - No initial pose set for actor builder of wall, setting to default pose q=[1,0,0,0], p=[0,0,0]. Not setting reasonable initial poses may slow down simulation, see https://github.com/haosulab/ManiSkill/issues/421.[0m
+Evaluated 8000 steps resulting in 8 episodes
+eval_return_mean=66.57624816894531
+eval_episode_len_mean=600.0
+eval_reward_mean=0.11096040904521942
+model saved to runs/MS-HopperHop-v1__main__1__1781630738/ckpt_551.pt
+SPS: 10095
+Epoch: 552, global_step=18055168
+SPS: 10104
+Epoch: 553, global_step=18087936
+SPS: 10113
+Epoch: 554, global_step=18120704
+SPS: 10122
+Epoch: 555, global_step=18153472
+SPS: 10131
+Epoch: 556, global_step=18186240
+SPS: 10140
+Epoch: 557, global_step=18219008
+SPS: 10149
+Epoch: 558, global_step=18251776
+SPS: 10158
+Epoch: 559, global_step=18284544
+SPS: 10167
+Epoch: 560, global_step=18317312
+SPS: 10175
+Epoch: 561, global_step=18350080
+SPS: 10184
+Epoch: 562, global_step=18382848
+SPS: 10193
+Epoch: 563, global_step=18415616
+SPS: 10202
+Epoch: 564, global_step=18448384
+SPS: 10211
+Epoch: 565, global_step=18481152
+SPS: 10220
+Epoch: 566, global_step=18513920
+SPS: 10229
+Epoch: 567, global_step=18546688
+Exception in thread Thread-2:
+Traceback (most recent call last):
+  File "/home/fawad/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/summary/writer/event_file_writer.py", line 244, in run
+    self._run()
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/summary/writer/event_file_writer.py", line 275, in _run
+    self._record_writer.write(data)
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/summary/writer/record_writer.py", line 40, in write
+    self._writer.write(header + header_crc + data + footer_crc)
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/compat/tensorflow_stub/io/gfile.py", line 775, in write
+    self.fs.append(self.filename, file_content, self.binary_mode)
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/compat/tensorflow_stub/io/gfile.py", line 167, in append
+Traceback (most recent call last):
+  File "/home/fawad/GraphProj/main.py", line 439, in <module>
+    logger.add_scalar("losses/value_loss", v_loss.item(), global_step)
+  File "/home/fawad/GraphProj/main.py", line 170, in add_scalar
+    self.writer.add_scalar(tag, scalar_value, step)
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/torch/utils/tensorboard/writer.py", line 386, in add_scalar
+    self._get_file_writer().add_summary(summary, global_step, walltime)
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/torch/utils/tensorboard/writer.py", line 116, in add_summary
+    self.add_event(event, global_step, walltime)
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/torch/utils/tensorboard/writer.py", line 100, in add_event
+    self.event_writer.add_event(event)
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/summary/writer/event_file_writer.py", line 117, in add_event
+    self._async_writer.write(event.SerializeToString())
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/summary/writer/event_file_writer.py", line 171, in write
+    self._check_worker_status()
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/summary/writer/event_file_writer.py", line 212, in _check_worker_status
+    raise exception
+  File "/home/fawad/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/summary/writer/event_file_writer.py", line 244, in run
+    self._run()
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/summary/writer/event_file_writer.py", line 275, in _run
+    self._record_writer.write(data)
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/summary/writer/record_writer.py", line 40, in write
+    self._writer.write(header + header_crc + data + footer_crc)
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/compat/tensorflow_stub/io/gfile.py", line 775, in write
+    self.fs.append(self.filename, file_content, self.binary_mode)
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/compat/tensorflow_stub/io/gfile.py", line 167, in append
+    self._write(filename, file_content, "ab" if binary_mode else "a")
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/compat/tensorflow_stub/io/gfile.py", line 171, in _write
+    with io.open(filename, mode, encoding=encoding) as f:
+FileNotFoundError: [Errno 2] No such file or directory: b'runs/MS-HopperHop-v1__main__1__1781630738/events.out.tfevents.1781630742.fawad-Legion-5-15ACH6H.192110.0'
+    self._write(filename, file_content, "ab" if binary_mode else "a")
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/compat/tensorflow_stub/io/gfile.py", line 171, in _write
+    with io.open(filename, mode, encoding=encoding) as f:Traceback (most recent call last):
+  File "/home/fawad/GraphProj/main.py", line 439, in <module>
+    logger.add_scalar("losses/value_loss", v_loss.item(), global_step)
+  File "/home/fawad/GraphProj/main.py", line 170, in add_scalar
+    self.writer.add_scalar(tag, scalar_value, step)
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/torch/utils/tensorboard/writer.py", line 386, in add_scalar
+    self._get_file_writer().add_summary(summary, global_step, walltime)
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/torch/utils/tensorboard/writer.py", line 116, in add_summary
+    self.add_event(event, global_step, walltime)
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/torch/utils/tensorboard/writer.py", line 100, in add_event
+    self.event_writer.add_event(event)
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/summary/writer/event_file_writer.py", line 117, in add_event
+    self._async_writer.write(event.SerializeToString())
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/summary/writer/event_file_writer.py", line 171, in write
+    self._check_worker_status()
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/summary/writer/event_file_writer.py", line 212, in _check_worker_status
+    raise exception
+  File "/home/fawad/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/summary/writer/event_file_writer.py", line 244, in run
+    self._run()
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/summary/writer/event_file_writer.py", line 275, in _run
+    self._record_writer.write(data)
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/summary/writer/record_writer.py", line 40, in write
+    self._writer.write(header + header_crc + data + footer_crc)
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/compat/tensorflow_stub/io/gfile.py", line 775, in write
+    self.fs.append(self.filename, file_content, self.binary_mode)
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/compat/tensorflow_stub/io/gfile.py", line 167, in append
+    self._write(filename, file_content, "ab" if binary_mode else "a")
+  File "/home/fawad/GraphProj/.venv/lib/python3.10/site-packages/tensorboard/compat/tensorflow_stub/io/gfile.py", line 171, in _write
+    with io.open(filename, mode, encoding=encoding) as f:
+FileNotFoundError: [Errno 2] No such file or directory: b'runs/MS-HopperHop-v1__main__1__1781630738/events.out.tfevents.1781630742.fawad-Legion-5-15ACH6H.192110.0'
+
+FileNotFoundError: [Errno 2] No such file or directory: b'runs/MS-HopperHop-v1__main__1__1781630738/events.out.tfevents.1781630742.fawad-Legion-5-15ACH6H.192110.0'

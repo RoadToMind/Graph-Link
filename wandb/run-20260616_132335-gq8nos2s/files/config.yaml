@@ -1,0 +1,160 @@
+_wandb:
+    value:
+        cli_version: 0.27.2
+        code_path: code/main.py
+        e:
+            7fadj1rfr54svm2v1dd268w3puhms1t4:
+                args:
+                    - --track
+                codePath: main.py
+                codePathLocal: main.py
+                cpu_count: 8
+                cpu_count_logical: 16
+                cudaVersion: "13.2"
+                disk:
+                    /:
+                        total: "209131184128"
+                        used: "103737958400"
+                email: fawadhussain1964@gmail.com
+                executable: /home/fawad/GraphProj/.venv/bin/python3
+                gpu: NVIDIA GeForce RTX 3060 Laptop GPU
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Ampere
+                      cudaCores: 3840
+                      memoryTotal: "6442450944"
+                      name: NVIDIA GeForce RTX 3060 Laptop GPU
+                      uuid: GPU-3afae1e8-6e2f-af50-ee59-c76601a03304
+                host: fawad-Legion-5-15ACH6H
+                memory:
+                    total: "16609705984"
+                os: Linux-6.17.0-35-generic-x86_64-with-glibc2.39
+                program: /home/fawad/GraphProj/main.py
+                python: CPython 3.10.20
+                root: /home/fawad/GraphProj
+                startedAt: "2026-06-16T11:23:35.536353Z"
+                writerId: 7fadj1rfr54svm2v1dd268w3puhms1t4
+        m: []
+        python_version: 3.10.20
+        t:
+            "1":
+                - 1
+                - 49
+            "2":
+                - 1
+                - 49
+            "3":
+                - 13
+                - 15
+                - 16
+                - 61
+            "4": 3.10.20
+            "5": 0.27.2
+            "12": 0.27.2
+            "13": linux-x86_64
+anneal_lr:
+    value: true
+batch_size:
+    value: 16384
+capture_video:
+    value: true
+checkpoint:
+    value: null
+clip_coef:
+    value: 0.2
+clip_vloss:
+    value: false
+control_mode:
+    value: pd_joint_delta_pos
+cuda:
+    value: true
+ent_coef:
+    value: 0.01
+env_cfg:
+    value:
+        control_mode: pd_joint_delta_pos
+        env_horizon: 600
+        env_id: MS-HopperHop-v1
+        num_envs: 128
+        obs_mode: state
+        partial_reset: true
+        render_mode: rgb_array
+        reward_mode: normalized_dense
+        sim_backend: physx_cuda
+env_id:
+    value: MS-HopperHop-v1
+eval_env_cfg:
+    value:
+        control_mode: pd_joint_delta_pos
+        env_horizon: 600
+        env_id: MS-HopperHop-v1
+        num_envs: 8
+        obs_mode: state
+        partial_reset: false
+        render_mode: rgb_array
+        reward_mode: normalized_dense
+        sim_backend: physx_cuda
+eval_freq:
+    value: 25
+eval_partial_reset:
+    value: false
+eval_reconfiguration_freq:
+    value: 1
+evaluate:
+    value: false
+exp_name:
+    value: main
+finite_horizon_gae:
+    value: false
+gae_lambda:
+    value: 0.95
+gamma:
+    value: 0.99
+learning_rate:
+    value: 0.0003
+max_grad_norm:
+    value: 0.5
+minibatch_size:
+    value: 2048
+norm_adv:
+    value: true
+num_envs:
+    value: 128
+num_eval_envs:
+    value: 8
+num_eval_steps:
+    value: 128
+num_iterations:
+    value: 3051
+num_minibatches:
+    value: 8
+num_steps:
+    value: 128
+partial_reset:
+    value: true
+reconfiguration_freq:
+    value: null
+reward_scale:
+    value: 1
+save_model:
+    value: true
+save_train_video_freq:
+    value: null
+seed:
+    value: 1
+target_kl:
+    value: 0.1
+torch_deterministic:
+    value: true
+total_timesteps:
+    value: 50000000
+track:
+    value: true
+update_epochs:
+    value: 8
+vf_coef:
+    value: 0.5
+wandb_entity:
+    value: null
+wandb_project_name:
+    value: ManiSkill

@@ -1,0 +1,73 @@
+{
+  "env_info": {
+    "env_id": "MS-HopperHop-v1",
+    "env_kwargs": {
+      "num_envs": 8,
+      "reconfiguration_freq": 1,
+      "obs_mode": "state",
+      "render_mode": "rgb_array",
+      "sim_backend": "physx_cuda",
+      "control_mode": "pd_joint_delta_pos"
+    },
+    "max_episode_steps": 600
+  },
+  "commit_info": null,
+  "episodes": [
+    {
+      "episode_id": 0,
+      "episode_seed": 1791095845,
+      "control_mode": "pd_joint_delta_pos",
+      "elapsed_steps": 128,
+      "reset_kwargs": {}
+    },
+    {
+      "episode_id": 1,
+      "episode_seed": 1028862084,
+      "control_mode": "pd_joint_delta_pos",
+      "elapsed_steps": 128,
+      "reset_kwargs": {}
+    },
+    {
+      "episode_id": 2,
+      "episode_seed": 870353631,
+      "control_mode": "pd_joint_delta_pos",
+      "elapsed_steps": 128,
+      "reset_kwargs": {}
+    },
+    {
+      "episode_id": 3,
+      "episode_seed": 788373214,
+      "control_mode": "pd_joint_delta_pos",
+      "elapsed_steps": 128,
+      "reset_kwargs": {}
+    },
+    {
+      "episode_id": 4,
+      "episode_seed": 1419052930,
+      "control_mode": "pd_joint_delta_pos",
+      "elapsed_steps": 128,
+      "reset_kwargs": {}
+    },
+    {
+      "episode_id": 5,
+      "episode_seed": 873768326,
+      "control_mode": "pd_joint_delta_pos",
+      "elapsed_steps": 128,
+      "reset_kwargs": {}
+    },
+    {
+      "episode_id": 6,
+      "episode_seed": 1622145301,
+      "control_mode": "pd_joint_delta_pos",
+      "elapsed_steps": 128,
+      "reset_kwargs": {}
+    },
+    {
+      "episode_id": 7,
+      "episode_seed": 2008179789,
+      "control_mode": "pd_joint_delta_pos",
+      "elapsed_steps": 128,
+      "reset_kwargs": {}
+    }
+  ]
+}

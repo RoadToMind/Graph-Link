@@ -1,0 +1,39 @@
+{
+  "os": "Linux-6.17.0-35-generic-x86_64-with-glibc2.39",
+  "python": "CPython 3.10.20",
+  "startedAt": "2026-06-16T11:23:35.536353Z",
+  "args": [
+    "--track"
+  ],
+  "program": "/home/fawad/GraphProj/main.py",
+  "codePath": "main.py",
+  "codePathLocal": "main.py",
+  "email": "fawadhussain1964@gmail.com",
+  "root": "/home/fawad/GraphProj",
+  "host": "fawad-Legion-5-15ACH6H",
+  "executable": "/home/fawad/GraphProj/.venv/bin/python3",
+  "cpu_count": 8,
+  "cpu_count_logical": 16,
+  "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "209131184128",
+      "used": "103737958400"
+    }
+  },
+  "memory": {
+    "total": "16609705984"
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA GeForce RTX 3060 Laptop GPU",
+      "memoryTotal": "6442450944",
+      "cudaCores": 3840,
+      "architecture": "Ampere",
+      "uuid": "GPU-3afae1e8-6e2f-af50-ee59-c76601a03304"
+    }
+  ],
+  "cudaVersion": "13.2",
+  "writerId": "7fadj1rfr54svm2v1dd268w3puhms1t4"
+}
