@@ -22,18 +22,7 @@ from torch.distributions.normal import Normal
 def build_kinematic_dgl_graph(articulation):
     """
     Build a DGLGraph from a SAPIEN Articulation object.
-    Edges are directed child -> parent so that prop_nodes_topo with
-    reverse=False processes leaves first and the root last, matching
-    Algorithm 1's leaf-to-root traversal order.
-
-    Args:
-        articulation: sapien.physx.PhysxArticulation (or ManiSkill wrapper)
-
-    Returns:
-        g         : DGLGraph, edges child -> parent
-        root_idx  : int, index of the root link (no parent)
-        link_names: list[str], link names in node-index order
-        parent_of : list[int], parent_of[i] = parent index, or -1 for root
+    Edges are directed child -> parent.
     """
     links = articulation.get_links()
     link_names = [l.get_name() for l in links]
@@ -41,21 +30,44 @@ def build_kinematic_dgl_graph(articulation):
 
     child_ids, parent_ids = [], []
     parent_of = [-1] * len(links)
+    
+    # 1. Ask SAPIEN for the actual motors (active joints)
+    active_joints = articulation.get_active_joints()
+    active_joint_names = [j.get_name() for j in active_joints]
+
+    # 2. Track which nodes and edges represent motors
+    edge_is_actuated = []
+    node_is_actuated = [False] * len(links)
 
     for joint in articulation.get_joints():
         parent_link = joint.get_parent_link()
         child_link = joint.get_child_link()
+        
         if parent_link is None:
             # root-mounting joint with no parent link — skip
             continue
+            
         c_idx = name_to_idx[child_link.get_name()]
         p_idx = name_to_idx[parent_link.get_name()]
         child_ids.append(c_idx)
         parent_ids.append(p_idx)
         parent_of[c_idx] = p_idx
+        
+        # 3. Check if this specific joint is a motor
+        joint_name = joint.get_name()
+        is_active = (joint_name in active_joint_names) and ("root" not in joint_name)
+        edge_is_actuated.append(is_active)
+        node_is_actuated[c_idx] = is_active
 
     g = dgl.graph((child_ids, parent_ids), num_nodes=len(links))
-    root_idx = parent_of.index(-1)  # exactly one link has no parent
+    root_idx = parent_of.index(-1)  
+
+    # 4. Embed the masks into the graph so ABDNet can find the 4 actions
+    g.edata['is_actuated'] = torch.tensor(edge_is_actuated, dtype=torch.bool)
+    g.ndata['is_actuated'] = torch.tensor(node_is_actuated, dtype=torch.bool)
+    print("All SAPIEN joints:", [j.get_name() for j in articulation.get_joints()])
+    print("Detected Active joints:", active_joint_names)
+    print("Node Mask Result:", g.ndata['is_actuated'].tolist())
 
     return g, root_idx, link_names, parent_of
 
@@ -260,8 +272,20 @@ class ABDNetAgent(nn.Module):
         self.action_dim = action_dim
 
         # non-root link indices in deterministic order (for action assembly)
-        self.joint_indices = [i for i in range(self.K) if i != root_idx]
+        ##self.joint_indices = [i for i in range(self.K) if i != root_idx]
         # DoF per joint — assume uniform split; override if robot has mixed DoF
+        ##dof_per_joint = action_dim // len(self.joint_indices)
+        ##self.dof_per_joint = dof_per_joint
+        # Read the actuation mask we embedded in the graph
+        is_actuated_mask = self.g.ndata['is_actuated'].tolist()
+
+        # ONLY track joints that are actually motors
+        self.joint_indices = [
+            i for i in range(self.K) 
+            if i != root_idx and is_actuated_mask[i]
+        ]
+        
+        # DoF per joint — this will now correctly calculate 4 // 4 = 1
         dof_per_joint = action_dim // len(self.joint_indices)
         self.dof_per_joint = dof_per_joint
 
