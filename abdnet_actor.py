@@ -327,7 +327,7 @@ class ABDNetAgent(nn.Module):
         z_flat = z.reshape(B * self.K, self.d)
 
         # Build batched graph: B copies of the same topology
-        batched_g = dgl.batch([self.g] * B)
+        batched_g = dgl.batch([self.g] * B).to(z_flat.device)
 
         # M: leaf-to-root propagation -> [B*K, d]
         v_flat = self.M(batched_g, z_flat)
