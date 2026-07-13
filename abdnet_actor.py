@@ -35,16 +35,19 @@ def build_kinematic_dgl_graph(articulation):
     active_joints = articulation.get_active_joints()
     active_joint_names = [j.get_name() for j in active_joints]
 
-    # 2. Track which nodes and edges represent motors
+    # 2. Track which nodes and edges represent motors, AND their SAPIEN order
     edge_is_actuated = []
     node_is_actuated = [False] * len(links)
+    motor_order = [-1] * len(links)
+
+    # Clean the active joint names (remove floating roots)
+    real_motors = [name for name in active_joint_names if "root" not in name]
 
     for joint in articulation.get_joints():
         parent_link = joint.get_parent_link()
         child_link = joint.get_child_link()
         
         if parent_link is None:
-            # root-mounting joint with no parent link — skip
             continue
             
         c_idx = name_to_idx[child_link.get_name()]
@@ -53,21 +56,23 @@ def build_kinematic_dgl_graph(articulation):
         parent_ids.append(p_idx)
         parent_of[c_idx] = p_idx
         
-        # 3. Check if this specific joint is a motor
+        # 3. Check if this specific joint is a motor and record its exact SAPIEN index
         joint_name = joint.get_name()
-        is_active = (joint_name in active_joint_names) and ("root" not in joint_name)
+        is_active = joint_name in real_motors
+        
         edge_is_actuated.append(is_active)
         node_is_actuated[c_idx] = is_active
+        
+        if is_active:
+            motor_order[c_idx] = real_motors.index(joint_name)
 
     g = dgl.graph((child_ids, parent_ids), num_nodes=len(links))
     root_idx = parent_of.index(-1)  
 
-    # 4. Embed the masks into the graph so ABDNet can find the 4 actions
+    # 4. Embed the masks AND the correct ordering into the graph
     g.edata['is_actuated'] = torch.tensor(edge_is_actuated, dtype=torch.bool)
     g.ndata['is_actuated'] = torch.tensor(node_is_actuated, dtype=torch.bool)
-    print("All SAPIEN joints:", [j.get_name() for j in articulation.get_joints()])
-    print("Detected Active joints:", active_joint_names)
-    print("Node Mask Result:", g.ndata['is_actuated'].tolist())
+    g.ndata['motor_order'] = torch.tensor(motor_order, dtype=torch.long)
 
     return g, root_idx, link_names, parent_of
 
@@ -113,20 +118,20 @@ class DynamicsMessagePassing(nn.Module):
         Computes the child contribution before sending it to the parent.
         edges.src = child side (edges are child -> parent).
         """
-        v_j = edges.src['v']        # [E, d]
-        W_j = edges.src['W']        # [E, d, d]
+        v_j = edges.src['v']        
+        W_j = edges.src['W']        
 
         # W_j^T v_j : project v_j into the learned motion-subspace basis
         Wt_v = torch.bmm(
             W_j.transpose(1, 2),
-            v_j.unsqueeze(-1)        # [E, d, 1]
-        )                            # -> [E, d, 1]
+            v_j.unsqueeze(-1)        
+        )                            
 
         # W_j (W_j^T v_j) : project back -- this is the "absorbed" component
-        proj = torch.bmm(W_j, Wt_v).squeeze(-1)   # [E, d]
+        proj = torch.bmm(W_j, Wt_v).squeeze(-1)   
 
         # subtract the joint-absorbed component (Eq. 8)
-        v_a = v_j - v_j * proj      # element-wise: diag(v_j) applied
+        v_a = v_j - v_j * proj      # element-wise
         return {'v_a': v_a}
 
     def reduce_func(self, nodes):
@@ -135,7 +140,7 @@ class DynamicsMessagePassing(nn.Module):
         Aggregates all child contributions into the parent's message buffer.
         Only fires for nodes that received at least one message (non-leaves).
         """
-        m_i = nodes.mailbox['v_a'].sum(dim=1)   # [N_active, d]
+        m_i = nodes.mailbox['v_a'].sum(dim=1)   
         return {'m': m_i}
 
     def apply_node_func(self, nodes):
@@ -144,10 +149,11 @@ class DynamicsMessagePassing(nn.Module):
         softplus enforces positivity, mirroring positive-definiteness of
         physical inertia. m_i is 0 for leaves (pre-initialized in forward).
         """
-        z_i = nodes.data['z']
-        B_i = nodes.data['B']
+        ##z_i = nodes.data['z']
+        ##B_i = nodes.data['B']
         m_i = nodes.data['m']
-        v_i = F.softplus(z_i + B_i) + m_i
+        ##v_i = F.softplus(z_i + B_i) + m_i
+        v_i = nodes.data['v'] + nodes.data['m']
         return {'v': v_i}
 
     # -- forward -------------------------------------------------------------
@@ -180,7 +186,8 @@ class DynamicsMessagePassing(nn.Module):
         # Critical: leaves never receive messages so reduce_func never
         # fires for them; without this they'd read uninitialized 'm'.
         g.ndata['m'] = torch.zeros(N, self.d, device=device)
-        g.ndata['v'] = torch.zeros(N, self.d, device=device)  # placeholder
+        ##g.ndata['v'] = torch.zeros(N, self.d, device=device)  # placeholder
+        g.ndata['v'] = F.softplus(z + B_tiled)
 
         # Propagate leaf-to-root in topological order (one frontier at a time)
         dgl.prop_nodes_topo(
@@ -277,15 +284,27 @@ class ABDNetAgent(nn.Module):
         ##dof_per_joint = action_dim // len(self.joint_indices)
         ##self.dof_per_joint = dof_per_joint
         # Read the actuation mask we embedded in the graph
-        is_actuated_mask = self.g.ndata['is_actuated'].tolist()
+        ##is_actuated_mask = self.g.ndata['is_actuated'].tolist()
 
         # ONLY track joints that are actually motors
-        self.joint_indices = [
-            i for i in range(self.K) 
-            if i != root_idx and is_actuated_mask[i]
-        ]
+        ###self.joint_indices = [
+        ###    i for i in range(self.K) 
+        ###    if i != root_idx and is_actuated_mask[i]
+        ###]
         
         # DoF per joint — this will now correctly calculate 4 // 4 = 1
+        ###dof_per_joint = action_dim // len(self.joint_indices)
+        ###self.dof_per_joint = dof_per_joint
+        # Read the actuation mask and the exact SAPIEN array order
+        motor_order = self.g.ndata['motor_order'].tolist()
+
+        # ONLY track joints that are actually motors, and SORT them by SAPIEN's expected order
+        self.joint_indices = sorted(
+            [i for i in range(self.K) if motor_order[i] != -1],
+            key=lambda node_idx: motor_order[node_idx]
+        )
+        
+        # DoF per joint 
         dof_per_joint = action_dim // len(self.joint_indices)
         self.dof_per_joint = dof_per_joint
 
@@ -302,17 +321,17 @@ class ABDNetAgent(nn.Module):
             for _ in range(self.K)
         ])
 
-        # -- M: dynamics-informed message passing (Sec. IV-B) ----------------
+        # -- M: dynamics-informed message passing ----------------
         self.M = DynamicsMessagePassing(self.K, d)
 
-        # -- Psi: per-joint action heads (Sec. IV-C) -------------------------
+        # -- Psi: per-joint action heads -------------------------
         # One linear head per non-root link, reading v_{PA(j)}
         self.psi = nn.ModuleList([
             layer_init(nn.Linear(d, dof_per_joint), std=0.01 * np.sqrt(2))
             for _ in self.joint_indices
         ])
 
-        # -- Stochastic policy: learned log-std --------------------------------
+        # -- Stochastic policy:--------------------------------
         self.actor_logstd = nn.Parameter(
             torch.ones(1, action_dim) * -0.5
         )

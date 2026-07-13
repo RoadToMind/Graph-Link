@@ -62,7 +62,7 @@ class Args:
     # Environment
     env_id: str = "MS-HopperHop-v1"
     """the id of the environment"""
-    total_timesteps: int = 80_000_000
+    total_timesteps: int = 10_000_000
     """total timesteps of the experiments"""
     learning_rate: float = 3e-4
     """the learning rate of the optimizer"""
@@ -379,7 +379,13 @@ if __name__ == "__main__":
 
             with torch.no_grad():
                 # get_action_and_value now returns 5 values (includes v for L_orth)
-                action, logprob, _, value, _ = agent.get_action_and_value(next_obs)
+                ##action, logprob, _, value, _ = agent.get_action_and_value(next_obs)
+                # INJECT RANDOM NOISE BETWEEN -1 and 1
+                action = torch.rand((args.num_envs, action_dim), device=device) * 2.0 - 1.0
+                
+                # Create fake dummy values so the script doesn't crash
+                logprob = torch.zeros((args.num_envs,), device=device)
+                value = torch.zeros((args.num_envs, 1), device=device)
                 values[step] = value.flatten()
             actions[step] = action
             logprobs[step] = logprob
