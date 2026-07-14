@@ -121,7 +121,7 @@ class Args:
     """feature dimension d for link embeddings in ABD-NET"""
     abd_phi_hidden: int = 64
     """hidden size of the per-link phi MLP encoder"""
-    orth_coef: float = 0.01
+    orth_coef: float = 0.0
     """coefficient for the orthogonality loss L_orth (Eq. 9)"""
 
     # to be filled in runtime
@@ -143,6 +143,20 @@ class Logger:
 
     def close(self):
         self.writer.close()
+
+def get_action_joint_names(envs):
+    """Return joints in exactly the flattened environment-action order."""
+    base_env = envs._env
+    while hasattr(base_env, "env"):
+        base_env = base_env.env
+
+    names = []
+    for controller in base_env.agent.controller.controllers.values():
+        # Passive root controller has zero action dimensions.
+        if controller.single_action_space.shape[0] > 0:
+            names.extend(joint.get_name() for joint in controller.joints)
+
+    return names
 
 
 def get_robot_articulation(envs):
@@ -238,10 +252,16 @@ if __name__ == "__main__":
     # Reset once to ensure the articulation is fully initialized in SAPIEN
     envs.reset(seed=args.seed)
     articulation = get_robot_articulation(envs)
-    g, root_idx, link_names, parent_of = build_kinematic_dgl_graph(articulation)
+    action_joint_names = get_action_joint_names(envs)
+    g, root_idx, link_names, parent_of = build_kinematic_dgl_graph(articulation,
+    action_joint_names)
     K = g.num_nodes()
     print(f"Kinematic tree: {K} links, root='{link_names[root_idx]}'")
     print(f"Link order: {link_names}")
+    print(f"Environment action order: {action_joint_names}")
+    print(f"THE GRAPH Itself: {g}")
+
+
 
     obs_dim = int(np.prod(envs.single_observation_space.shape))
     action_dim = int(np.prod(envs.single_action_space.shape))
@@ -379,16 +399,16 @@ if __name__ == "__main__":
 
             with torch.no_grad():
                 # get_action_and_value now returns 5 values (includes v for L_orth)
-                ##action, logprob, _, value, _ = agent.get_action_and_value(next_obs)
+                action, logprob, _, value, _ = agent.get_action_and_value(next_obs)
                 # INJECT RANDOM NOISE BETWEEN -1 and 1
-                action = torch.rand((args.num_envs, action_dim), device=device) * 2.0 - 1.0
+                ##action = torch.rand((args.num_envs, action_dim), device=device) * 2.0 - 1.0
                 
                 # Create fake dummy values so the script doesn't crash
-                logprob = torch.zeros((args.num_envs,), device=device)
-                value = torch.zeros((args.num_envs, 1), device=device)
-                values[step] = value.flatten()
+                ##logprob = torch.zeros((args.num_envs,), device=device)
+                ##value = torch.zeros((args.num_envs, 1), device=device)
             actions[step] = action
             logprobs[step] = logprob
+            values[step] = value.flatten()
 
             next_obs, reward, terminations, truncations, infos = envs.step(clip_action(action))
             next_done = torch.logical_or(terminations, truncations).to(torch.float32)
