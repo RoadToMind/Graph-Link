@@ -38,7 +38,7 @@ from abdnet_actor import ABDNetAgent, build_kinematic_dgl_graph, orthogonality_l
 class Args:
     exp_name: Optional[str] = None
     """the name of this experiment"""
-    seed: int = 1
+    seed: int = 2
     """seed of the experiment"""
     torch_deterministic: bool = True
     """if toggled, `torch.backends.cudnn.deterministic=True`"""
@@ -60,9 +60,9 @@ class Args:
     """path to a pretrained checkpoint file to start evaluation/training from"""
 
     # Environment
-    env_id: str = "MS-HopperHop-v1"
+    env_id: str = "MS-HumanoidWalk-v1"
     """the id of the environment"""
-    total_timesteps: int = 10_000_000
+    total_timesteps: int = 80_000_000
     """total timesteps of the experiments"""
     learning_rate: float = 3e-4
     """the learning rate of the optimizer"""
@@ -86,7 +86,7 @@ class Args:
     """the control mode to use for the environment"""
     anneal_lr: bool = True
     """Toggle learning rate annealing for policy and value networks"""
-    gamma: float = 0.99
+    gamma: float = 0.97
     """the discount factor gamma"""
     gae_lambda: float = 0.95
     """the lambda for the general advantage estimation"""
@@ -100,7 +100,7 @@ class Args:
     """the surrogate clipping coefficient"""
     clip_vloss: bool = False
     """Toggles whether or not to use a clipped loss for the value function"""
-    ent_coef: float = 0.01
+    ent_coef: float = 0.001
     """coefficient of the entropy"""
     vf_coef: float = 0.5
     """coefficient of the value function"""
@@ -121,7 +121,7 @@ class Args:
     """feature dimension d for link embeddings in ABD-NET"""
     abd_phi_hidden: int = 64
     """hidden size of the per-link phi MLP encoder"""
-    orth_coef: float = 0.0
+    orth_coef: float = 1e-4
     """coefficient for the orthogonality loss L_orth (Eq. 9)"""
 
     # to be filled in runtime
@@ -143,6 +143,13 @@ class Logger:
 
     def close(self):
         self.writer.close()
+
+
+def tensors_are_finite(tensors):
+    finite_checks = [torch.isfinite(tensor).all() for tensor in tensors]
+    if not finite_checks:
+        return True
+    return bool(torch.stack(finite_checks).all().item())
 
 def get_action_joint_names(envs):
     """Return joints in exactly the flattened environment-action order."""
@@ -364,7 +371,9 @@ if __name__ == "__main__":
             for _ in range(args.num_eval_steps):
                 with torch.no_grad():
                     eval_action = agent.get_action(eval_obs, deterministic=True)
-                    eval_obs, eval_rew, eval_terminations, eval_truncations, eval_infos = eval_envs.step(eval_action)
+                    eval_obs, eval_rew, eval_terminations, eval_truncations, eval_infos = eval_envs.step(
+                        clip_action(eval_action)
+                    )
                     if "final_info" in eval_infos:
                         mask = eval_infos["_final_info"]
                         num_episodes += mask.sum()
@@ -470,6 +479,9 @@ if __name__ == "__main__":
         b_inds = np.arange(args.batch_size)
         clipfracs = []
         orth_losses = []
+        grad_norms = []
+        max_abs_representations = []
+        skipped_updates = 0
         update_time = time.time()
 
         for epoch in range(args.update_epochs):
@@ -491,9 +503,6 @@ if __name__ == "__main__":
                     old_approx_kl = (-logratio).mean()
                     approx_kl = ((ratio - 1) - logratio).mean()
                     clipfracs += [((ratio - 1.0).abs() > args.clip_coef).float().mean().item()]
-
-                if args.target_kl is not None and approx_kl > args.target_kl:
-                    break
 
                 mb_advantages = b_advantages[mb_inds]
                 if args.norm_adv:
@@ -518,11 +527,14 @@ if __name__ == "__main__":
 
                 entropy_loss = entropy.mean()
 
-                # Orthogonality loss L_orth (Eq. 9)
-                # v_mb: [B, K, d] — average over batch before passing to loss
-                v_mean = v_mb.mean(dim=0)   # [K, d], one representative per link
-                orth_loss = orthogonality_loss(agent.M, v_mean)
+                # Evaluate L_orth independently for every sample
+                # NO average representations before computing the quadratic loss.
+                orth_loss = torch.stack([
+                    orthogonality_loss(agent.M, v_sample)
+                    for v_sample in v_mb
+                ]).mean()
                 orth_losses.append(orth_loss.item())
+                max_abs_representations.append(v_mb.detach().abs().max().item())
 
                 # Total loss: PPO + L_orth
                 loss = (
@@ -532,10 +544,44 @@ if __name__ == "__main__":
                     + args.orth_coef * orth_loss     # <-- Eq. (9) added here
                 )
 
-                optimizer.zero_grad()
+                # Stop the PPO update at the target KL, but compute all loss
+                # diagnostics above so logging never reuses stale values from
+                # the previous iteration.
+                if args.target_kl is not None and approx_kl > args.target_kl:
+                    break
+
+                if not torch.isfinite(loss):
+                    skipped_updates += 1
+                    optimizer.zero_grad(set_to_none=True)
+                    continue
+
+                optimizer.zero_grad(set_to_none=True)
                 loss.backward()
-                nn.utils.clip_grad_norm_(agent.parameters(), args.max_grad_norm)
+                gradients_are_finite = tensors_are_finite(
+                    parameter.grad for parameter in agent.parameters()
+                    if parameter.grad is not None
+                )
+                if not gradients_are_finite:
+                    skipped_updates += 1
+                    optimizer.zero_grad(set_to_none=True)
+                    continue
+
+                grad_norm = nn.utils.clip_grad_norm_(
+                    agent.parameters(), args.max_grad_norm
+                )
+                if not torch.isfinite(grad_norm):
+                    skipped_updates += 1
+                    optimizer.zero_grad(set_to_none=True)
+                    continue
+
+                grad_norms.append(grad_norm.item())
                 optimizer.step()
+
+                parameters_are_finite = tensors_are_finite(agent.parameters())
+                if not parameters_are_finite:
+                    raise FloatingPointError(
+                        "Optimizer produced non-finite model parameters"
+                    )
 
             if args.target_kl is not None and approx_kl > args.target_kl:
                 break
@@ -556,6 +602,19 @@ if __name__ == "__main__":
         logger.add_scalar("losses/approx_kl", approx_kl.item(), global_step)
         logger.add_scalar("losses/clipfrac", np.mean(clipfracs), global_step)
         logger.add_scalar("losses/explained_variance", explained_var, global_step)
+        logger.add_scalar(
+            "diagnostics/grad_norm",
+            np.mean(grad_norms) if grad_norms else 0.0,
+            global_step,
+        )
+        logger.add_scalar(
+            "diagnostics/max_abs_representation",
+            np.max(max_abs_representations),
+            global_step,
+        )
+        logger.add_scalar(
+            "diagnostics/skipped_updates", skipped_updates, global_step
+        )
         print("SPS:", int(global_step / (time.time() - start_time)))
         logger.add_scalar("charts/SPS", int(global_step / (time.time() - start_time)), global_step)
         logger.add_scalar("time/step", global_step, global_step)

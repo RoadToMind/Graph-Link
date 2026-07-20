@@ -134,51 +134,51 @@ class DynamicsMessagePassing(nn.Module):
         # B_i: zero-init so initial prior is "no intrinsic inertia offset"
         self.B = nn.Parameter(torch.zeros(K, d))
 
-        # W_i: scaled identity init — near-orthonormal from the start,
-        # small scale (0.1) so initial child attenuation is mild rather
-        # than zeroing out all child contributions from step 1.
+        # At initialization z and B are centered near zero, so the local
+        # representation is approximately softplus(0) = log(2). Start the
+        # weighted projection near, but not exactly at, I so child features
+        # can still propagate while satisfying the premise of Eqs. (8)-(9).
+        initial_feature_value = np.log(2.0)
+        initial_projection = 0.9
+        motion_basis_scale = np.sqrt(initial_projection / initial_feature_value)
         self.W = nn.Parameter(
-            torch.eye(d).unsqueeze(0).repeat(K, 1, 1) * 0.1
+            torch.eye(d).unsqueeze(0).repeat(K, 1, 1) * motion_basis_scale
         )
 
     # -- DGL message/reduce/apply functions ----------------------------------
 
     def message_func(self, edges):
         """
-        Eq. (8): v^a_j = v_j - v_j * (W_j W_j^T v_j)
-        Computes the child contribution before sending it to the parent.
-        edges.src = child side (edges are child -> parent).
+        Eq. (8)
         """
         v_j = edges.src['v']        
         W_j = edges.src['W']        
 
-        # W_j^T v_j : project v_j into the learned motion-subspace basis
         Wt_v = torch.bmm(
             W_j.transpose(1, 2),
             v_j.unsqueeze(-1)        
         )                            
 
-        # W_j (W_j^T v_j) : project back -- this is the "absorbed" component
-        proj = torch.bmm(W_j, Wt_v).squeeze(-1)   
+        raw_projection = torch.bmm(W_j, Wt_v).squeeze(-1)
 
-        # subtract the joint-absorbed component (Eq. 8)
-        v_a = v_j - v_j * proj      # element-wise
+        # Eq. (8) assumes the weighted-orthogonality constraint makes this a
+        # valid projection. That constraint is soft during optimization, but this clamp
+        # prevents quadratic amplification through a deep
+        # kinematic tree.
+        projection = raw_projection.clamp(min=0.0, max=1.0)
+        v_a = v_j * (1.0 - projection)
         return {'v_a': v_a}
 
     def reduce_func(self, nodes):
         """
-        Eq. (6): m_i = sum_{j in CH(i)} v^a_j
-        Aggregates all child contributions into the parent's message buffer.
-        Only fires for nodes that received at least one message (non-leaves).
+        Eq. (6)
         """
         m_i = nodes.mailbox['v_a'].sum(dim=1)   
         return {'m': m_i}
 
     def apply_node_func(self, nodes):
         """
-        Eq. (7): v_i = softplus(z_i + B_i) + m_i
-        softplus enforces positivity, mirroring positive-definiteness of
-        physical inertia. m_i is 0 for leaves (pre-initialized in forward).
+        Eq. (7)
         """
         ##z_i = nodes.data['z']
         ##B_i = nodes.data['B']
@@ -192,8 +192,8 @@ class DynamicsMessagePassing(nn.Module):
     def forward(self, g: dgl.DGLGraph, z: torch.Tensor) -> torch.Tensor:
         """
         Args:
-            g : DGLGraph with N = B*K nodes (batched across B environments)
-            z : [B*K, d] link embeddings from Phi, in node-index order
+            g : DGLGraph with N = B*K nodes
+            z : [B*K, d] link embeddings from Phi
 
         Returns:
             v : [B*K, d] link representations after leaf-to-root sweep
@@ -201,21 +201,15 @@ class DynamicsMessagePassing(nn.Module):
         N = z.shape[0]   # B*K when batched
         device = z.device
 
-        # local_var() scopes ndata writes to this call — safe for reuse
         g = g.local_var()
 
-        # Populate node features for message/apply functions to read
         g.ndata['z'] = z
-        # Tile B and W across the batch dimension (B copies of K params)
-        # z has shape [B*K, d]; B_tiled must match node count B*K
         B_tiled = self.B.repeat(N // self.K, 1)      # [B*K, d]
         W_tiled = self.W.repeat(N // self.K, 1, 1)   # [B*K, d, d]
         g.ndata['B'] = B_tiled
         g.ndata['W'] = W_tiled
 
         # Pre-initialize m=0 for all nodes — Algorithm 1 line 4.
-        # Critical: leaves never receive messages so reduce_func never
-        # fires for them; without this they'd read uninitialized 'm'.
         g.ndata['m'] = torch.zeros(N, self.d, device=device)
         ##g.ndata['v'] = torch.zeros(N, self.d, device=device)  # placeholder
         g.ndata['v'] = F.softplus(z + B_tiled)
@@ -239,24 +233,33 @@ class DynamicsMessagePassing(nn.Module):
 def orthogonality_loss(M_module: DynamicsMessagePassing,
                        v: torch.Tensor) -> torch.Tensor:
     """
-    Eq. (9): L_orth = (1/K) * sum_i || W_i^T diag(v_i) W_i - I ||_F^2
-
-    Penalizes deviation of W_i^T diag(v_i) W_i from identity, which is
-    the assumption made to avoid computing (W^T diag(v) W)^{-1} in Eq.(8).
+    Eq. (9)
 
     Args:
         M_module : DynamicsMessagePassing instance
-        v        : [K, d] link representations (single-env, not batched)
-                   Use the mean over batch if calling during batched training.
+        v        : [K, d] link representations for a single observation.
     """
     W = M_module.W                              # [K, d, d]
-    diag_v = torch.diag_embed(v)               # [K, d, d]
+    if v.shape != W.shape[:2]:
+        raise ValueError(
+            f"Representation shape {v.shape} does not match W shape {W.shape[:2]}"
+        )
+
+    diag_v = torch.diag_embed(v)                 # [K, d, d]
     WtDW = torch.bmm(
         W.transpose(1, 2),
-        torch.bmm(diag_v, W)
-    )                                           # [K, d, d]
-    I = torch.eye(W.shape[-1], device=W.device).unsqueeze(0)  # [1, d, d]
-    return ((WtDW - I) ** 2).sum(dim=(1, 2)).mean()           # scalar
+        torch.bmm(diag_v, W),
+    )                                            # [K, d, d]
+    identity = torch.eye(W.shape[-1], device=W.device).unsqueeze(0)
+    return ((WtDW - identity) ** 2).sum(dim=(1, 2)).mean()
+
+    # Optimized equivalent retained for reference:
+    # gram_squared = torch.bmm(W, W.transpose(1, 2)).square()
+    # quadratic = torch.einsum("ki,kij,kj->k", v, gram_squared, v)
+    # row_norm_squared = W.square().sum(dim=-1)
+    # trace = torch.einsum("ki,ki->k", v, row_norm_squared)
+    # loss_per_link = quadratic - 2.0 * trace + W.shape[-1]
+    # return loss_per_link.clamp_min(0.0).mean()
 
 
 # ---------------------------------------------------------------------------
@@ -275,13 +278,13 @@ class ABDNetAgent(nn.Module):
     in ppo.py (get_value, get_action, get_action_and_value).
 
     Architecture:
-        Phi  : K independent per-link MLPs  obs -> z_i          (Sec. IV-A)
-        M    : DynamicsMessagePassing        {z_i} -> {v_i}      (Sec. IV-B)
-        Psi  : K-1 per-joint linear heads    v_{PA(j)} -> a_j    (Sec. IV-C)
-        Critic: shared MLP on flat obs -> scalar value
+        Phi  : K independent per-link MLPs  
+        M    : DynamicsMessagePassing       
+        Psi  : K-1 per-joint linear heads    
+        Critic: shared MLP on flat obs
 
     Args:
-        g          : DGLGraph (child -> parent), built by build_kinematic_dgl_graph
+        g          : DGLGraph (child -> parent)
         root_idx   : int
         parent_of  : list[int]  parent_of[i] = parent link index, -1 for root
         obs_dim    : int        dimension of the flat observation vector
@@ -336,13 +339,19 @@ class ABDNetAgent(nn.Module):
         )
         print(f"Environment action order___SAMEEE: {self.joint_indices}")
 
-        # DoF per joint 
-        dof_per_joint = action_dim // len(self.joint_indices)
+        num_actuated_joints = len(self.joint_indices)
+
+        if action_dim != num_actuated_joints:
+            raise ValueError(
+                "ABDNet currently requires one action dimension per actuated joint: "
+                f"action_dim={action_dim}, actuated_joints={num_actuated_joints}"
+            )
+
+        dof_per_joint = 1
         self.dof_per_joint = dof_per_joint
 
         # -- Phi: per-link encoders (Sec. IV-A) ------------------------------
-        # Each phi_i is a small MLP: obs_dim -> phi_hidden -> d
-        # NOT weight-shared: each link gets its own parameters
+        #each link gets its own parameters
         self.phi = nn.ModuleList([
             nn.Sequential(
                 layer_init(nn.Linear(obs_dim, phi_hidden)),
@@ -376,7 +385,7 @@ class ABDNetAgent(nn.Module):
             nn.Tanh(),
             layer_init(nn.Linear(256, 256)),
             nn.Tanh(),
-            layer_init(nn.Linear(256, 1), std=1.0),
+            layer_init(nn.Linear(256, 1)),
         )
 
     # -- internal helpers ----------------------------------------------------
@@ -395,27 +404,21 @@ class ABDNetAgent(nn.Module):
         B = s.shape[0]
 
         # Phi: [B, obs_dim] -> [B, K, d]
-        # Each phi[i] maps [B, obs_dim] -> [B, d]; stack along dim 1
         z = torch.stack([self.phi[i](s) for i in range(self.K)], dim=1)  # [B, K, d]
 
-        # Flatten to [B*K, d] for DGL batched graph
         z_flat = z.reshape(B * self.K, self.d)
 
-        # Build batched graph: B copies of the same topology
         batched_g = dgl.batch([self.g] * B).to(z_flat.device)
 
         # M: leaf-to-root propagation -> [B*K, d]
         v_flat = self.M(batched_g, z_flat)
 
-        # Unflatten: [B, K, d]
         v = v_flat.reshape(B, self.K, self.d)
 
         return v, v_flat
 
     def _decode_actions(self, v: torch.Tensor) -> torch.Tensor:
         """
-        Psi: for each non-root link j, read v_{PA(j)} and decode action.
-
         Args:
             v : [B, K, d]
 
@@ -428,7 +431,8 @@ class ABDNetAgent(nn.Module):
             v_pa = v[:, pa, :]                  # [B, d]  -- Eq. (10)
             a_j = self.psi[idx](v_pa)           # [B, dof_per_joint]
             parts.append(a_j)
-        return torch.cat(parts, dim=-1)         # [B, action_dim]
+        raw_action_mean = torch.cat(parts, dim=-1)  # [B, action_dim]
+        return torch.tanh(raw_action_mean)
 
     # -- PPO-compatible API --------------------------------------------------
 
@@ -453,7 +457,7 @@ class ABDNetAgent(nn.Module):
             log_prob  : [B]
             entropy   : [B]
             value     : [B, 1]
-            v         : [B, K, d]   link representations (needed for L_orth)
+            v         : [B, K, d] (needed for L_orth)
         """
         v, _ = self._encode_and_propagate(x)
         action_mean = self._decode_actions(v)
@@ -470,5 +474,5 @@ class ABDNetAgent(nn.Module):
             probs.log_prob(action).sum(1),
             probs.entropy().sum(1),
             self.critic(x),
-            v,                  # returned so caller can compute L_orth
+            v,                  
         )
