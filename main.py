@@ -25,7 +25,7 @@ from mani_skill.vector.wrappers.gymnasium import ManiSkillVectorEnv
 class Args:
     exp_name: Optional[str] = None
     """the name of this experiment"""
-    seed: int = 1
+    seed: int = 3
     """seed of the experiment"""
     torch_deterministic: bool = True
     """if toggled, `torch.backends.cudnn.deterministic=True`"""

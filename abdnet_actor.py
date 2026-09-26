@@ -145,6 +145,10 @@ class DynamicsMessagePassing(nn.Module):
             torch.eye(d).unsqueeze(0).repeat(K, 1, 1) * motion_basis_scale
         )
 
+        # Populated by each forward pass for PPO diagnostics.
+        self.projection_below_zero_pct = torch.tensor(0.0)
+        self.projection_above_one_pct = torch.tensor(0.0)
+
     # -- DGL message/reduce/apply functions ----------------------------------
 
     def message_func(self, edges):
@@ -161,11 +165,23 @@ class DynamicsMessagePassing(nn.Module):
 
         raw_projection = torch.bmm(W_j, Wt_v).squeeze(-1)
 
+        raw_projection_detached = raw_projection.detach()
+        self._projection_below_zero_count += (
+            raw_projection_detached < 0.0
+        ).sum()
+        self._projection_above_one_count += (
+            raw_projection_detached > 1.0
+        ).sum()
+        self._projection_element_count += raw_projection_detached.numel()
+
         # Eq. (8) assumes the weighted-orthogonality constraint makes this a
         # valid projection. That constraint is soft during optimization, but this clamp
         # prevents quadratic amplification through a deep
         # kinematic tree.
-        projection = raw_projection.clamp(min=0.0, max=1.0)
+        ##ojection = raw_projection.clamp(min=0.0, max=1.0)
+        ##a = v_j * (1.0 - projection)
+        positive_projection = F.softplus(raw_projection, beta=5.0)
+        projection = 1.0 - torch.reciprocal(1.0 + positive_projection)
         v_a = v_j * (1.0 - projection)
         return {'v_a': v_a}
 
@@ -201,6 +217,10 @@ class DynamicsMessagePassing(nn.Module):
         N = z.shape[0]   # B*K when batched
         device = z.device
 
+        self._projection_below_zero_count = torch.zeros((), device=device)
+        self._projection_above_one_count = torch.zeros((), device=device)
+        self._projection_element_count = 0
+
         g = g.local_var()
 
         g.ndata['z'] = z
@@ -221,6 +241,15 @@ class DynamicsMessagePassing(nn.Module):
             reduce_func=self.reduce_func,
             apply_node_func=self.apply_node_func,
             reverse=False,
+        )
+
+        projection_element_count = max(self._projection_element_count, 1)
+        percentage_scale = 100.0 / projection_element_count
+        self.projection_below_zero_pct = (
+            self._projection_below_zero_count * percentage_scale
+        )
+        self.projection_above_one_pct = (
+            self._projection_above_one_count * percentage_scale
         )
 
         return g.ndata['v']   # [B*K, d]

@@ -38,7 +38,7 @@ from abdnet_actor import ABDNetAgent, build_kinematic_dgl_graph, orthogonality_l
 class Args:
     exp_name: Optional[str] = None
     """the name of this experiment"""
-    seed: int = 2
+    seed: int = 1
     """seed of the experiment"""
     torch_deterministic: bool = True
     """if toggled, `torch.backends.cudnn.deterministic=True`"""
@@ -481,6 +481,8 @@ if __name__ == "__main__":
         orth_losses = []
         grad_norms = []
         max_abs_representations = []
+        projection_below_zero_percentages = []
+        projection_above_one_percentages = []
         skipped_updates = 0
         update_time = time.time()
 
@@ -535,6 +537,12 @@ if __name__ == "__main__":
                 ]).mean()
                 orth_losses.append(orth_loss.item())
                 max_abs_representations.append(v_mb.detach().abs().max().item())
+                projection_below_zero_percentages.append(
+                    agent.M.projection_below_zero_pct.item()
+                )
+                projection_above_one_percentages.append(
+                    agent.M.projection_above_one_pct.item()
+                )
 
                 # Total loss: PPO + L_orth
                 loss = (
@@ -610,6 +618,16 @@ if __name__ == "__main__":
         logger.add_scalar(
             "diagnostics/max_abs_representation",
             np.max(max_abs_representations),
+            global_step,
+        )
+        logger.add_scalar(
+            "diagnostics/projection_below_zero_pct",
+            np.mean(projection_below_zero_percentages),
+            global_step,
+        )
+        logger.add_scalar(
+            "diagnostics/projection_above_one_pct",
+            np.mean(projection_above_one_percentages),
             global_step,
         )
         logger.add_scalar(

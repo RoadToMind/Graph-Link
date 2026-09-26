@@ -6,6 +6,8 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "dgl==2.1.0+cu121",
+    "diffusers==0.30.3",
+    "h5py>=3.10.0",
     "mani-skill>=3.0.1",
     "numpy<2.0.0",
     "pandas>=2.3.3",
@@ -14,6 +16,8 @@ dependencies = [
     "tensorboard>=2.20.0",
     "torch==2.1.0",
     "torchdata==0.7.0",
+    "tqdm>=4.66.0",
+    "tyro>=0.8.0",
     "wandb>=0.27.2",
 ]
 [tool.uv]

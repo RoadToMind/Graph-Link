@@ -8,3 +8,22 @@ wheels/
 
 # Virtual environments
 .venv
+
+
+# Local experiment outputs
+/runs/
+/wandb/
+
+# Generated videos
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.webm
+
+# Generated ML checkpoints and datasets
+*.pt
+*.pth
+*.ckpt
+*.h5
+events.out.tfevents.*
