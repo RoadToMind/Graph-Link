@@ -22,20 +22,21 @@ Install the root dependencies with `uv sync`. The commands below assume a Bash s
 
 ### PPO
 
-Run these from the repository root. These use the recorded Hopper MLP seed 2, Hopper ABD seed 1, and Humanoid ABD seed 2 settings; options equal to script defaults are omitted.
+Run these from the repository root. Part I used seeds 1, 2, and 3; the commands show seed 1. Change `seed` and rerun for the other seeds. Options equal to script defaults are omitted.
 
 ```bash
+seed=1
 uv run python main.py --env-id MS-HopperHop-v1 \
-  --exp-name hopperhop_mlp_matched_seed2 --seed 2 \
+  --exp-name "hopperhop_mlp_matched_seed${seed}" --seed "$seed" \
   --total-timesteps 50000000 --num-eval-steps 128 --track
 
 uv run python ppo.py --env-id MS-HopperHop-v1 \
-  --exp-name hopperhop_abdnet_matched_seed1 --seed 1 \
+  --exp-name "hopperhop_abdnet_matched_seed${seed}" --seed "$seed" \
   --total-timesteps 50000000 --num-eval-steps 128 \
   --gamma 0.99 --ent-coef 0.01 --orth-coef 1e-4 \
   --abd-d 256 --abd-phi-hidden 64 --track
 
-uv run python ppo.py --env-id MS-HumanoidWalk-v1 --seed 2 \
+uv run python ppo.py --env-id MS-HumanoidWalk-v1 --seed "$seed" \
   --num-steps 50 --num-minibatches 50 \
   --gamma 0.97 --ent-coef 0.001 --orth-coef 1e-4 \
   --target-kl 0.1 --track
@@ -43,7 +44,7 @@ uv run python ppo.py --env-id MS-HumanoidWalk-v1 --seed 2 \
 
 ### Diffusion Policy
 
-Run from `examples/baselines/diffusion_policy`. NormalDiff is `train.py`, AllComb is `train_abd.py`, and GraphOnly is `train_only.py`. The commands below cover RollBall, LiftPegUpright, and PushT with the same seed and training length. The exact historical commands for the Part II plots are not saved in this repo; these use the current scripts and the settings in the existing RollBall notes. Put each matching ManiSkill `.h5` file beside its `.json` metadata first.
+Run from `examples/baselines/diffusion_policy`. NormalDiff is `train.py`, AllComb is `train_abd.py`, and GraphOnly is `train_only.py`. Part II used only seed 1. The commands below cover RollBall, LiftPegUpright, and PushT with the same training length. The exact historical commands for the Part II plots are not saved in this repo; these use the current scripts and the settings in the existing RollBall notes. Put each matching ManiSkill `.h5` file beside its `.json` metadata first.
 
 ```bash
 cd examples/baselines/diffusion_policy
