@@ -44,7 +44,7 @@ uv run python ppo.py --env-id MS-HumanoidWalk-v1 --seed "$seed" \
 
 ### Diffusion Policy
 
-Run from `examples/baselines/diffusion_policy`. NormalDiff is `train.py`, AllComb is `train_abd.py`, and GraphOnly is `train_only.py`. Part II used only seed 1. The commands below cover RollBall, LiftPegUpright, and PushT with the same training length. The exact historical commands for the Part II plots are not saved in this repo; these use the current scripts and the settings in the existing RollBall notes. Put each matching ManiSkill `.h5` file beside its `.json` metadata first.
+Run from `examples/baselines/diffusion_policy`. NormalDiff is `train.py`, AllComb is `train_abd.py`, and GraphOnly is `train_only.py`. Part II used only seed 1. The GraphOnly commands below use the recorded run settings for RollBall, LiftPegUpright, and PushT. Put each matching ManiSkill `.h5` file beside its `.json` metadata first.
 
 ```bash
 cd examples/baselines/diffusion_policy
@@ -54,22 +54,39 @@ liftpeg=../../../demos/LiftPegUpright-v1/rl/trajectory.state.pd_joint_delta_pos.
 pusht=../../../demos/PushT-v1/rl/trajectory.state.pd_joint_delta_pos.physx_cuda.h5
 
 # RollBall-v1
-uv run python train.py --env-id RollBall-v1 --demo-path "$rollball" --max-episode-steps 80 "${common[@]}"
-uv run python train_abd.py --env-id RollBall-v1 --demo-path "$rollball" --max-episode-steps 80 "${common[@]}"
-uv run python train_only.py --env-id RollBall-v1 --demo-path "$rollball" --max-episode-steps 80 "${common[@]}"
+uv run python train_only.py --env-id RollBall-v1 \
+  --demo-path "$rollball" --control-mode pd_joint_delta_pos --sim-backend physx_cuda \
+  --max-episode-steps 80 --total-iters 100000 --batch-size 1024 --lr 1e-4 \
+  --obs-horizon 2 --act-horizon 15 --pred-horizon 16 \
+  --diffusion-step-embed-dim 64 --unet-dims 64 128 256 --n-groups 8 \
+  --abd-feature-dim 256 --abd-phi-hidden-dim 64 --orth-coef 1e-4 \
+  --log-freq 1000 --eval-freq 5000 --num-eval-episodes 100 --num-eval-envs 10 \
+  --seed 1 --exp-name RollBall-graphOnly --track --wandb-project-name ManiSkill
 
 # LiftPegUpright-v1
-uv run python train.py --env-id LiftPegUpright-v1 --demo-path "$liftpeg" --max-episode-steps 50 "${common[@]}"
-uv run python train_abd.py --env-id LiftPegUpright-v1 --demo-path "$liftpeg" --max-episode-steps 50 "${common[@]}"
-uv run python train_only.py --env-id LiftPegUpright-v1 --demo-path "$liftpeg" --max-episode-steps 50 "${common[@]}"
+uv run python train_only.py --env-id LiftPegUpright-v1 \
+  --demo-path "$liftpeg" --control-mode pd_joint_delta_pos --sim-backend physx_cuda \
+  --max-episode-steps 100 --total-iters 100000 --batch-size 1024 --lr 1e-4 \
+  --obs-horizon 2 --act-horizon 15 --pred-horizon 16 \
+  --diffusion-step-embed-dim 64 --unet-dims 64 128 256 --n-groups 8 \
+  --abd-feature-dim 256 --abd-phi-hidden-dim 64 --orth-coef 1e-4 \
+  --log-freq 1000 --eval-freq 5000 --num-eval-episodes 100 --num-eval-envs 10 \
+  --seed 1 --exp-name LiftPegUpright-graphOnly --track --wandb-project-name ManiSkill
 
 # PushT-v1
-uv run python train.py --env-id PushT-v1 --demo-path "$pusht" --max-episode-steps 150 "${common[@]}"
-uv run python train_abd.py --env-id PushT-v1 --demo-path "$pusht" --max-episode-steps 150 "${common[@]}"
-uv run python train_only.py --env-id PushT-v1 --demo-path "$pusht" --max-episode-steps 150 "${common[@]}"
+uv run python train_only.py --env-id PushT-v1 \
+  --demo-path "$pusht" --control-mode pd_joint_delta_pos --sim-backend physx_cuda \
+  --max-episode-steps 150 --total-iters 100000 --batch-size 1024 --lr 1e-4 \
+  --obs-horizon 2 --act-horizon 15 --pred-horizon 16 \
+  --diffusion-step-embed-dim 64 --unet-dims 64 128 256 --n-groups 8 \
+  --abd-feature-dim 256 --abd-phi-hidden-dim 64 --orth-coef 1e-4 \
+  --log-freq 1000 --eval-freq 5000 --num-eval-episodes 100 --num-eval-envs 10 \
+  --seed 1 --exp-name PushT-GraphOnly --track --wandb-project-name ManiSkill
 
 # Separate all-node experiment
 uv run python train_abd_all.py --env-id RollBall-v1 --demo-path "$rollball" --max-episode-steps 80 "${common[@]}"
 ```
+
+To run AllComb, change `train_only.py` to `train_abd.py` and update `--exp-name`. To run NormalDiff, change it to `train.py`, remove `--abd-feature-dim`, `--abd-phi-hidden-dim`, and `--orth-coef`, and update `--exp-name`.
 
 Each Diffusion Policy script evaluates 100 episodes every 5,000 iterations by default. The ABD scripts use 256-dimensional node features by default.
